@@ -15,7 +15,7 @@
 <title>Your Plan</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap">
 <style>
 /* One light-pink look on purpose: it stays pink even when the phone is in dark mode.
    Rose for actions and progress, lavender for "ready to go up" moments, soft rounded type. */
@@ -270,185 +270,6 @@ body.timing{padding-bottom:calc(var(--nav-h) + env(safe-area-inset-bottom) + 96p
 .phase.now .wk{color:var(--accent)}
 .sched{display:grid;grid-template-columns:52px 1fr;gap:6px 10px;font-size:14.5px}
 .sched b{color:var(--muted);font-weight:700}
-/* ===================== THEME: planner x studio (v9) =====================
-   Material: butter paper with berry ink and one pink neoprene object.
-   Type: Instrument Serif for titles and big numbers, Bricolage Grotesque for everything you tap.
-   Pink lands in one place per screen: the exercise you're on (or the main action). Rules, not cards. */
-:root{
-  --bg:#FFF4D6; --top:#FFF4D6; --card:#FFFBEF; --card2:#FFF8E4; --ink:#3D1427; --muted:#7E5965;
-  --line:rgba(61,20,39,.14); --rule:#3D1427; --butter:#FFE59A;
-  --accent:#BE3A74; --accent-ink:#FFF4D6; --accent-soft:#FAD3E1; --pink:#E05A93;
-  --accent-2:#3D1427; --accent-2-soft:#FFE9AE; --band:rgba(224,90,147,.22);
-  --shadow:none; --r:24px; --nav-h:64px;
-  --font:"Bricolage Grotesque",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
-  --serif:"Instrument Serif",Georgia,"Times New Roman",serif;
-}
-html,body{font-size:16px;line-height:1.45}
-body{background:var(--bg);padding-bottom:calc(var(--nav-h) + env(safe-area-inset-bottom) + 34px)}
-header.top{background:var(--bg);-webkit-backdrop-filter:none;backdrop-filter:none}
-input[type=checkbox]{accent-color:var(--ink)}
-.trend{display:flex;flex-direction:column;gap:6px;padding:4px 0 6px}
-.trend-n{font:400 64px/.9 var(--serif);letter-spacing:-.035em}
-.trend-n span{font:500 18px var(--font);letter-spacing:0;color:var(--muted)}
-.trend-l{font-size:15px;color:var(--ink);max-width:330px}
-.eyebrow{font:italic 400 17px/1.2 var(--serif);letter-spacing:0;text-transform:none;color:var(--muted)}
-.hello h1{font:400 30px/1.05 var(--serif);letter-spacing:-.01em}
-.iconbtn{border:1.5px solid var(--line);background:transparent;border-radius:50%}
-h2{font:400 31px/1.05 var(--serif);letter-spacing:-.015em;margin:30px 2px 6px}
-h3{font-size:17px;font-weight:700;letter-spacing:-.01em}
-h2,h3,.ex-n,.meal-t{font-weight:inherit}
-h3,.meal-t{font-weight:700}
-.card{background:transparent;border:0;border-top:1.5px solid var(--rule);border-radius:0;box-shadow:none;padding:14px 2px 6px;margin:20px 0 0}
-.card.soft,.card.warn{border:0;border-radius:var(--r);padding:16px 18px;margin:16px 0 0}
-.card.soft{background:var(--accent-soft)}
-.card.warn{background:var(--accent-2-soft)}
-.muted{color:var(--muted)}
-.chip{background:var(--accent-soft);color:var(--ink);font-weight:600;padding:6px 12px}
-.chip.plain{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
-.btn{min-height:50px;border:1.5px solid var(--rule);background:transparent;font-weight:700;color:var(--ink)}
-.btn.primary{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-.btn.sm{min-height:40px}
-.btn.danger{color:var(--danger);border-color:var(--danger)}
-/* hero: big serif title, the pink dumbbell is the object */
-.hero{position:relative;padding:10px 2px 4px}
-.hero .date{color:var(--ink);font-size:14px;font-weight:600}
-.hero h2{font:400 54px/.92 var(--serif);letter-spacing:-.035em;margin:12px 0 10px;max-width:calc(100% - 92px)}
-.hero .focus{font-size:16px;color:var(--muted)}
-.hero-db{position:absolute;right:-2px;top:34px;width:92px;height:auto;transform:rotate(-28deg);pointer-events:none}
-/* week: capsules from the dumbbell */
-.week{gap:6px;margin-top:12px}
-.wd{background:transparent;border:0;padding:0;gap:5px;font-size:12px;font-weight:700;color:var(--ink)}
-.wd .dot{width:100%;height:44px;border-radius:16px;border:0;background:var(--butter)}
-.wd.wlift .dot{border:0;background:var(--accent-soft)}
-.wd.done .dot{background:var(--pink)}
-.wd .dot svg{width:16px;height:16px;stroke:var(--ink)}
-.wd.today{background:transparent;color:var(--ink)}
-.wd.today .dot{box-shadow:inset 0 0 0 2.5px var(--ink)}
-.wd.missed .dot{background:repeating-linear-gradient(-45deg,var(--accent-soft) 0 6px,var(--bg) 6px 12px);opacity:1}
-.wd .lb{font-size:10.5px;font-weight:500;color:var(--muted)}
-.wd .vb{top:29px;right:7px;background:var(--ink)}
-.lnk{border:0;background:none;padding:0;color:var(--ink);font:inherit;font-weight:600;text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:4px;cursor:pointer}
-.hero-meta{display:flex;gap:6px 20px;flex-wrap:wrap;margin-top:14px;font-size:15px}
-.guide-t{margin:18px 2px 4px;font-size:14.5px;color:var(--muted);line-height:1.5}
-.guide-t .lnk{color:var(--accent)}
-/* targets: a ledger line */
-.strip{background:transparent;border:0;border-top:1.5px solid var(--rule);border-bottom:1px solid var(--line);border-radius:0;box-shadow:none;padding:14px 2px 14px;margin:20px 0 0;gap:18px}
-.strip .lbl{font-size:13px;font-weight:600;text-transform:none;letter-spacing:0;color:var(--muted);order:2}
-.strip .cell{display:flex;flex-direction:column}
-.strip .val{font:400 36px/1 var(--serif);letter-spacing:-.02em;order:1}
-.strip .val .small{font:500 14px var(--font);letter-spacing:0}
-.strip .sub{order:3;font-size:12.5px}
-.strip .bar{order:4}
-.bar{height:10px;background:var(--butter);border:0}
-.bar .fill{background:var(--pink)}
-.bar .band{background:transparent;border-left:2px solid var(--ink);border-right:2px solid var(--ink);opacity:.55}
-.guide{gap:8px;margin:18px 0 0}
-/* exercises: ruled rows; the current one is the pink neoprene block */
-.ex{background:transparent;border:0;border-top:1px solid var(--line);border-radius:0;box-shadow:none;margin:0;overflow:visible}
-.ex-h{padding:16px 2px 8px;gap:12px}
-.ex-num{width:auto;min-width:26px;height:auto;background:transparent;color:var(--accent);font:400 32px/1 var(--serif);margin-top:-2px;border-radius:0;display:block}
-.ex-n{font:400 25px/1.05 var(--serif);letter-spacing:-.01em}
-.ex-p{font-size:14px}
-.cuebtn{color:var(--ink);text-decoration:underline;text-underline-offset:3px;font-weight:600}
-.ex .cue{background:var(--card);margin:0 2px 10px}
-.last{margin:0 2px 8px;color:var(--muted)}
-.ready{margin:2px 2px 10px;background:var(--accent-2-soft);border-radius:16px}
-.ready b{color:var(--ink)}
-.sets{padding:2px 0 14px}
-.sethead{text-transform:none;letter-spacing:0;font-size:12.5px;font-weight:600}
-.set input,.wstep{background:var(--card);border:1.5px solid var(--line);border-radius:16px;height:50px}
-.set input{font:700 19px var(--font)}
-.check{width:50px;height:50px;border-radius:50%;border:1.5px solid var(--rule);background:transparent}
-.check svg{stroke:var(--ink);opacity:.25}
-.set.done .check{background:var(--ink);border-color:var(--ink)}
-.set.done .check svg{stroke:var(--bg);opacity:1}
-.set.done input,.set.done .wstep{background:var(--card2);border-color:transparent}
-.wstep button{color:var(--ink)}
-.ex.alldone .ex-num{background:transparent;color:var(--muted)}
-.ex.alldone .ex-n{color:var(--muted)}
-.ex.cur{background:var(--pink);border:0;border-radius:30px;margin:14px -6px 10px;padding:4px 14px 6px}
-.ex.cur+.ex{border-top:0}
-.ex.cur .ex-num{color:var(--bg);font-size:44px}
-.ex.cur .ex-p,.ex.cur .last,.ex.cur .sethead,.ex.cur .set .sn{color:var(--ink)}
-.ex.cur .cuebtn{color:var(--ink)}
-.ex.cur .set input,.ex.cur .wstep{background:#fff;border-color:transparent}
-.ex.cur .set input::placeholder{color:#C98AA6;opacity:1}
-.ex.cur .check{border:2.5px solid var(--ink)}
-.ex.cur .set.done input,.ex.cur .set.done .wstep{background:rgba(255,255,255,.55)}
-.ex.cur .ready{background:rgba(255,244,214,.7)}
-.ex.cur .samebtn{background:rgba(255,255,255,.6);border-color:transparent;color:var(--ink)}
-.ex.cur .cue{background:rgba(255,255,255,.6)}
-.samebtn{background:transparent;border:1.5px solid var(--rule);color:var(--ink)}
-.complete{margin:20px 0 8px}
-.donebox{border-top:0;text-align:center;padding:26px 16px 18px;background:var(--pink);border-radius:30px;margin-top:18px}
-.donebox .big{font:400 36px/1 var(--serif);margin-bottom:6px}
-.donebox .heart svg{fill:var(--ink)}
-.donebox .muted{color:var(--ink)}
-.donebox .btn.ghost{border-color:var(--ink)}
-/* video workouts */
-.vplay{background:var(--ink);color:var(--bg);border-radius:50%}
-.vtag{background:var(--accent-soft);color:var(--ink)}
-.vtag.f.on{background:var(--ink);color:var(--bg)}
-.vdot{border-color:var(--ink);background:transparent}
-.vdot.on{background:var(--ink)}
-.vdot svg{stroke:var(--bg)}
-.vall,.minipaste,details.how summary,.vopen .go,a,.back{color:var(--accent)}
-.pastebtn{background:transparent;border:1.5px solid var(--rule);color:var(--ink);border-radius:16px}
-.capbox{background:var(--card);border:1.5px solid var(--line);border-radius:16px}
-.cappre{background:var(--accent-2-soft);border-radius:16px}
-/* lists everywhere become ruled rows */
-details.meal,.slot{background:transparent;border:0;border-top:1.5px solid var(--rule);border-radius:0;box-shadow:none;margin:0}
-details.meal+details.meal{border-top:1px solid var(--line)}
-details.meal summary{padding:16px 2px}
-.meal-t{font:400 23px/1.1 var(--serif);letter-spacing:-.01em}
-.meal-body{padding:0 2px 18px}
-.meal-body h4{text-transform:none;letter-spacing:0;font-size:14px;color:var(--ink)}
-.day{background:transparent;border:1.5px solid var(--line);border-radius:14px;color:var(--ink)}
-.day.today{background:var(--pink);border-color:var(--pink);color:var(--ink)}
-.slot{margin-top:18px}
-.slot-h{padding:14px 2px 6px}
-.slot-h h3{font:400 25px/1 var(--serif)}
-.entry{padding:11px 2px}
-.empty{padding:4px 2px 14px}
-.totals .big{font:400 46px/1 var(--serif);letter-spacing:-.02em}
-.stat .k,table.t th,.phase .wk,.opt .tag,.gcat h3{text-transform:none;letter-spacing:0}
-.stat .k{font-size:13px}
-.stat .v{font:400 34px/1.05 var(--serif);letter-spacing:-.02em}
-.gcat h3{font:italic 400 21px var(--serif);color:var(--ink);margin:22px 2px 4px}
-.gitem{background:transparent;border:0;border-top:1px solid var(--line);border-radius:0;margin:0;padding:13px 2px}
-.gitem .box{border-radius:50%;border-color:var(--rule)}
-.gitem.on .box{background:var(--ink);border-color:var(--ink)}
-.gitem .box svg{stroke:var(--bg)}
-.gitem .gp{color:var(--accent)}
-.opt{background:transparent;border:0;border-top:1px solid var(--line);border-radius:0;margin:0;padding:14px 2px}
-.opt .nm{font-weight:700}
-.field span{color:var(--ink);font-weight:600}
-.field input,.field select{background:var(--card);border:1.5px solid var(--line);border-radius:16px;height:50px}
-.toggle button{border-radius:99px;border:1.5px solid var(--line);background:transparent}
-.toggle button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-.stepper{background:transparent;border:1.5px solid var(--line);border-radius:99px}
-.cons .b{background:var(--pink);border-radius:10px 10px 4px 4px}
-.cons .b.zero{background:var(--butter)}
-.lift{border-top-color:var(--line)}
-.mini.fav{color:var(--accent)}
-.phase{border-left:2px solid var(--line)}
-.phase.now{border-color:var(--pink)}
-.activity input{background:var(--card);border:1.5px solid var(--line);border-radius:16px}
-/* nav: a berry bar with a pink capsule for where you are */
-nav.tabs{left:12px;right:12px;bottom:calc(10px + env(safe-area-inset-bottom));background:var(--ink);border:0;border-radius:26px;padding-bottom:0;-webkit-backdrop-filter:none;backdrop-filter:none;max-width:536px;margin:0 auto}
-nav.tabs .in{height:var(--nav-h);padding:0 6px}
-nav.tabs button{color:rgba(255,244,214,.62);font-weight:600;position:relative;isolation:isolate}
-nav.tabs button.on{color:var(--ink)}
-nav.tabs button.on::before{content:"";position:absolute;inset:8px 3px;border-radius:18px;background:var(--pink);z-index:-1}
-#timer{bottom:calc(var(--nav-h) + env(safe-area-inset-bottom) + 20px);background:var(--ink);color:var(--bg);border-radius:24px;box-shadow:none}
-#timer .t{font:400 34px/1 var(--serif)}
-#timer.end{background:var(--pink);color:var(--ink)}
-#toast{bottom:calc(var(--nav-h) + env(safe-area-inset-bottom) + 84px);background:var(--ink);color:var(--bg);border-radius:16px}
-#sheetWrap .scrim{background:rgba(61,20,39,.4)}
-#sheet{background:var(--bg);border-radius:28px 28px 0 0}
-#sheet h3{font:400 32px/1.05 var(--serif);letter-spacing:-.015em;margin:6px 0 12px}
-#sheet .grab{background:var(--line)}
-.chart text{font-family:var(--font)}
 /* onboarding */
 .onb{position:fixed;inset:0;z-index:70;background:var(--bg);display:none;flex-direction:column;padding:calc(env(safe-area-inset-top,0px) + 8px) 0 calc(env(safe-area-inset-bottom,0px) + 12px)}
 .onb.on{display:flex}
@@ -474,6 +295,181 @@ nav.tabs button.on::before{content:"";position:absolute;inset:8px 3px;border-rad
 .daily{margin:18px 2px 0;padding:14px 0 0;border-top:1px solid var(--line)}
 .daily blockquote{margin:0;font:italic 400 21px/1.3 var(--serif,inherit);color:var(--ink)}
 .daily figcaption{margin-top:6px;font-size:13px;color:var(--muted);font-weight:600}
+/* ===================== THEME: clean (v12) =====================
+   Grok's clean dashboard: blush page, white cards, one sans (Plus Jakarta Sans), rose for actions.
+   Pink gingham is the brand pattern (it's on the app icon): the header, the daily verse, the done state, onboarding. */
+:root{
+  --bg:#FFF4F7; --top:#FFF4F7; --card:#FFFFFF; --card2:#FFF8FA; --ink:#2C1A22; --muted:#76586A;
+  --line:#F1DAE3; --rule:#F1DAE3; --accent:#B83E6E; --accent-ink:#FFFFFF; --accent-soft:#FCE4EC; --pink:#E880A8;
+  --accent-2:#B83E6E; --accent-2-soft:#FCE4EC; --band:rgba(184,62,110,.16); --danger:#B3263E;
+  --shadow:0 1px 2px rgba(122,40,74,.05),0 6px 18px rgba(122,40,74,.07); --r:20px; --nav-h:64px;
+  --font:"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif; --serif:var(--font);
+  --gingham:linear-gradient(90deg,rgba(232,128,168,.30) 50%,transparent 0) 0 0/22px 22px,linear-gradient(rgba(232,128,168,.30) 50%,transparent 0) 0 0/22px 22px,#FFF8FA;
+}
+body{background:var(--bg);padding-bottom:calc(var(--nav-h) + env(safe-area-inset-bottom) + 34px)}
+body::before{background:var(--gingham)}
+header.top{background:var(--gingham);-webkit-backdrop-filter:none;backdrop-filter:none;border-bottom:1px solid var(--line)}
+.top-in{padding:14px 16px 12px}
+.hello{background:rgba(255,255,255,.88);border-radius:16px;padding:8px 12px;flex:0 1 auto!important;box-shadow:0 1px 2px rgba(122,40,74,.06)}
+.eyebrow{font:600 13px/1.3 var(--font);letter-spacing:0;text-transform:none;color:var(--muted)}
+.hello h1{font:800 20px/1.2 var(--font);letter-spacing:-.02em}
+.iconbtn{background:#fff;border:0;border-radius:50%;box-shadow:0 1px 2px rgba(122,40,74,.08)}
+.iconbtn.on{background:var(--accent-soft)}
+h2{font:800 20px/1.2 var(--font);letter-spacing:-.02em;margin:26px 2px 8px}
+h3{font-size:16px;font-weight:800;letter-spacing:-.01em}
+h2,h3,.ex-n,.meal-t{font-weight:800}
+.card{background:var(--card);border:0;border-radius:var(--r);box-shadow:var(--shadow);padding:16px;margin:12px 0}
+.card.soft{background:var(--accent-soft);box-shadow:none}
+.card.warn{background:#FFF1E3;box-shadow:none}
+.chip{background:var(--accent-soft);color:var(--accent);font-weight:700}
+.chip.plain{background:#fff;color:var(--ink);border:1.5px solid var(--line)}
+.btn{min-height:48px;border-radius:14px;border:0;background:var(--accent-soft);color:var(--accent);font-weight:700}
+.btn.primary{background:var(--accent);color:#fff}
+.btn.ghost{background:transparent;border:1.5px solid var(--line);color:var(--ink)}
+.btn.sm{min-height:40px;border-radius:12px}
+.btn.danger{color:var(--danger);border-color:var(--line)}
+.lnk{border:0;background:none;padding:0;color:var(--accent);font:inherit;font-weight:700;cursor:pointer}
+a,.back,.vall,.minipaste,details.how summary,.vopen .go{color:var(--accent)}
+/* hero */
+.hero{padding:16px 2px 2px}
+.hero .date{color:var(--muted);font-size:14px;font-weight:600}
+.hero h2{font:800 30px/1.1 var(--font);letter-spacing:-.03em;margin:6px 0 4px}
+.hero .focus{font-size:15px;color:var(--muted)}
+/* today's workout card */
+.wrow{display:flex;gap:14px;align-items:center}
+.ring{width:62px;height:62px;position:relative;flex:none}
+.ring svg{width:62px;height:62px;display:block}
+.ring b{position:absolute;inset:0;display:grid;place-items:center;font-size:15px;font-weight:800}
+.wnext{font-size:18px;font-weight:800;line-height:1.25;letter-spacing:-.01em;margin:2px 0 2px}
+.wbtns{display:grid;grid-template-columns:1.6fr 1fr;gap:10px;margin-top:14px}
+/* week */
+.week{gap:4px;margin-top:10px}
+.wd{background:transparent;border:0;padding:0;gap:5px;font-size:11px;font-weight:600;color:var(--muted)}
+.wd .dot{width:38px;height:38px;max-width:100%;border-radius:50%;border:0;background:var(--accent-soft);display:grid;place-items:center;font-size:14px;font-weight:700;color:var(--ink)}
+.wd.wlift .dot{border:0;background:var(--accent-soft)}
+.wd:not(.wlift) .dot{background:#F7EEF2;color:var(--muted)}
+.wd.done .dot{background:var(--accent);color:#fff}
+.wd.today{background:transparent;color:var(--accent)}
+.wd.today .dot{background:#fff;color:var(--accent);box-shadow:inset 0 0 0 2px var(--accent)}
+.wd.today .lb{color:var(--accent);font-weight:700}
+.wd.missed .dot{background:#fff;border:2px dashed var(--pink);opacity:1}
+.wd .lb{font-size:10px;font-weight:500;color:var(--muted);min-height:14px;white-space:nowrap;overflow:visible}
+.wd .vb{top:20px;right:calc(50% - 21px);width:8px;height:8px;background:var(--pink);box-shadow:0 0 0 2px #fff}
+/* targets */
+.strip{background:var(--card);border:0;border-radius:var(--r);box-shadow:var(--shadow);padding:14px 16px;margin:12px 0;gap:16px}
+.strip .cell{display:flex;flex-direction:column}
+.strip .cell+.cell{border-left:1px solid var(--line);padding-left:16px}
+.strip .lbl{order:1;font-size:13px;font-weight:600;text-transform:none;letter-spacing:0;color:var(--muted)}
+.strip .val{order:2;font-size:24px;font-weight:800;letter-spacing:-.02em;margin-top:2px}
+.strip .val .small{font-size:13.5px;font-weight:600;color:var(--muted);letter-spacing:0}
+.strip .bar{order:3}
+.strip .sub{order:4;margin-top:6px}
+.bar{height:8px;background:var(--accent-soft);border:0;margin-top:8px}
+.bar .fill{background:var(--accent)}
+.bar .band{background:transparent;border-left:2px solid rgba(44,26,34,.3);border-right:2px solid rgba(44,26,34,.3)}
+/* daily verse: a gingham ribbon on top */
+.daily{background:var(--card);border:0;border-radius:var(--r);box-shadow:var(--shadow);padding:0 16px 14px;margin:12px 0;overflow:hidden}
+.daily::before{content:"";display:block;height:10px;margin:0 -16px 12px;background:var(--gingham)}
+.daily blockquote{font:500 16px/1.5 var(--font);color:var(--ink)}
+.daily figcaption{font-size:13px;color:var(--muted);font-weight:700;margin-top:6px}
+/* dinner card */
+.dincard{display:flex;align-items:center;gap:10px;width:100%;text-align:left;font:inherit;color:inherit}
+.dincard .dn{font-weight:800;font-size:16px;margin:2px 0 1px}
+.dincard svg{color:var(--muted);flex:none}
+/* exercises */
+.guide-t{margin:4px 2px 4px;font-size:14px;color:var(--muted);line-height:1.5}
+.ex{background:var(--card);border:0;border-radius:var(--r);box-shadow:var(--shadow);margin:12px 0;overflow:hidden}
+.ex.cur{box-shadow:inset 0 0 0 2px var(--accent),var(--shadow)}
+.ex-h{padding:14px 14px 8px}
+.ex-num{width:30px;height:30px;border-radius:10px;background:var(--accent-soft);color:var(--accent);font-weight:800;font-size:14px;display:grid;place-items:center}
+.ex.cur .ex-num,.ex.alldone .ex-num{background:var(--accent);color:#fff}
+.ex-n{font-size:17px;line-height:1.25}
+.cuebtn{color:var(--accent);font-weight:700}
+.ex .cue{background:var(--card2)}
+.last{color:var(--muted)}
+.ready{background:var(--accent-soft)}
+.ready b{color:var(--accent)}
+.samebtn{background:var(--accent-soft);color:var(--accent);border:0;border-radius:12px}
+.sethead{text-transform:none;letter-spacing:0;font-size:12px;font-weight:600}
+.set input,.wstep{background:var(--card2);border:1.5px solid var(--line);border-radius:12px;height:48px}
+.set input{font-weight:700}
+.check{border-radius:12px;border:1.5px solid var(--line);background:#fff}
+.check svg{stroke:var(--muted);opacity:.45}
+.set.done .check{background:var(--accent);border-color:var(--accent)}
+.set.done .check svg{stroke:#fff;opacity:1}
+.set.done input,.set.done .wstep{background:var(--accent-soft);border-color:transparent}
+.wstep button{color:var(--accent)}
+.complete{margin:16px 0 8px}
+.donebox{background:var(--gingham);padding:16px;box-shadow:var(--shadow)}
+.donein{background:#fff;border-radius:16px;padding:20px 16px 16px;text-align:center}
+.donebox .big{font-size:22px;font-weight:800;margin-bottom:2px}
+.donebox .heart svg{fill:var(--accent)}
+.vplay{background:var(--accent);color:#fff;border-radius:14px}
+.vtag{background:var(--accent-soft);color:var(--accent)}
+.vtag.f.on{background:var(--accent);color:#fff}
+.vdot{border-color:var(--accent);background:#fff}
+.vdot.on{background:var(--accent)}
+.vdot svg{stroke:#fff}
+.pastebtn{background:var(--accent-soft);color:var(--accent);border:0;border-radius:14px}
+.capbox{background:#fff;border:1.5px solid var(--line);border-radius:14px}
+.cappre{background:var(--accent-soft);border-radius:14px}
+/* lists */
+details.meal,.slot{background:var(--card);border:0;border-radius:var(--r);box-shadow:var(--shadow);margin:12px 0}
+details.meal summary{padding:14px 16px}
+.meal-t{font-size:16px;line-height:1.25}
+.meal-body{padding:0 16px 16px}
+.meal-body h4{text-transform:none;letter-spacing:0;font-size:13.5px;color:var(--ink)}
+.day{background:var(--accent-soft);color:var(--accent);border:0;border-radius:12px}
+.day.today{background:var(--accent);color:#fff}
+.slot-h{padding:14px 16px 6px}
+.slot-h h3{font-size:16px}
+.entry{padding:11px 16px}
+.empty{padding:4px 16px 14px}
+.totals .big{font-size:30px;font-weight:800;letter-spacing:-.02em}
+.stat .k,table.t th,.phase .wk,.opt .tag,.gcat h3{text-transform:none;letter-spacing:0}
+.stat .v{font-size:24px;font-weight:800}
+.trend{display:flex;flex-direction:column;gap:6px;padding:2px 0 6px}
+.trend-n{font-size:44px;font-weight:800;letter-spacing:-.03em;line-height:1}
+.trend-n span{font-size:16px;font-weight:600;color:var(--muted);letter-spacing:0}
+.trend-l{font-size:15px;color:var(--ink);max-width:340px}
+.gcat h3{font-size:13.5px;font-weight:700;color:var(--muted);margin:20px 2px 6px}
+.gitem{background:var(--card);border:0;border-radius:14px;margin:6px 0;box-shadow:var(--shadow)}
+.gitem .box{border-radius:8px;border:1.5px solid var(--line)}
+.gitem.on .box{background:var(--accent);border-color:var(--accent)}
+.gitem .box svg{stroke:#fff}
+.opt{background:var(--card);border:1.5px solid var(--line);border-radius:14px;margin:8px 0}
+.field span{color:var(--ink);font-weight:600}
+.field input,.field select{background:#fff;border:1.5px solid var(--line);border-radius:14px;height:50px}
+.toggle button{border-radius:12px;border:1.5px solid var(--line);background:#fff}
+.toggle button.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.stepper{background:#fff;border:1.5px solid var(--line);border-radius:14px}
+.cons .b{background:var(--accent)}
+.cons .b.zero{background:var(--accent-soft)}
+.mini.fav{color:var(--accent)}
+.phase.now{border-color:var(--accent)}
+.activity input{background:#fff;border:1.5px solid var(--line);border-radius:14px}
+input[type=checkbox]{accent-color:var(--accent)}
+/* nav: white floating bar */
+nav.tabs{left:12px;right:12px;bottom:calc(10px + env(safe-area-inset-bottom));background:#fff;border:0;border-radius:24px;padding-bottom:0;box-shadow:0 8px 26px rgba(122,40,74,.13);-webkit-backdrop-filter:none;backdrop-filter:none;max-width:536px;margin:0 auto}
+nav.tabs .in{height:var(--nav-h);padding:0 6px}
+nav.tabs button{color:var(--muted);position:relative;isolation:isolate;font-weight:600}
+nav.tabs button.on{color:var(--accent)}
+nav.tabs button.on::before{content:"";position:absolute;inset:7px 4px;border-radius:16px;background:var(--accent-soft);z-index:-1}
+#timer{bottom:calc(var(--nav-h) + env(safe-area-inset-bottom) + 20px);background:var(--ink);color:#fff;border-radius:20px}
+#timer .t{font-size:26px;font-weight:800}
+#timer.end{background:var(--accent);color:#fff}
+#toast{bottom:calc(var(--nav-h) + env(safe-area-inset-bottom) + 84px);background:var(--ink);color:#fff;border-radius:14px}
+#sheetWrap .scrim{background:rgba(44,26,34,.38)}
+#sheet{background:var(--bg);border-radius:26px 26px 0 0}
+#sheet h3{font-size:22px;font-weight:800;letter-spacing:-.02em;margin:6px 0 12px}
+/* onboarding */
+.onb-body h2{font-size:30px;font-weight:800;letter-spacing:-.03em;line-height:1.1}
+.onb-hero{height:170px;border-radius:24px;background:var(--gingham);margin:8px 0 22px;display:grid;place-items:center}
+.onb-hero span{width:96px;height:96px;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:var(--shadow)}
+.onb-hero svg{width:62px}
+.ch button{border-radius:16px;border:1.5px solid var(--line);background:#fff}
+.ch button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.onb-sum .big b{font:800 32px/1 var(--font);letter-spacing:-.03em}
 #print{display:none}
 @media print{
   @page{size:Letter;margin:14mm 14mm 16mm}
@@ -1306,7 +1302,7 @@ function weekStrip(date){
     if (isMissed) missed++;
     const cls = `wd${lift?" wlift":""}${done?" done":""}${d===date?" today":""}${isMissed?" missed":""}`;
     const label = lift ? SESSIONS[k].short : WK_SHORT[k];
-    const inner = `<span>${fmt(d,{weekday:"short"})}</span><span class="dot">${ICON.check}</span><span class="lb">${label}</span>${vidsOn(d).length?'<span class="vb" aria-hidden="true"></span>':""}`;
+    const inner = `<span>${fmt(d,{weekday:"short"})}</span><span class="dot">${+d.slice(8)}</span><span class="lb">${label}</span>${vidsOn(d).length?'<span class="vb" aria-hidden="true"></span>':""}`;
     return isMissed
       ? `<button class="${cls}" data-act="pick-session" data-s="${k}" aria-label="${SESSIONS[k].title} was missed. Do it today">${inner}</button>`
       : `<div class="${cls}" title="${fmt(d,{weekday:"long"})}: ${SESSIONS[k].title}${done?" (done)":""}">${inner}</div>`;
@@ -1319,40 +1315,45 @@ function renderToday(){
   const log = S.workouts[date];
   const ph = phaseFor(wk);
   const notStarted = date < S.settings.startDate;
-  let h = `<section class="hero"><div class="date">${fmt(date)}</div>
-    <svg class="hero-db" viewBox="0 0 220 150" aria-hidden="true"><rect x="50" y="62" width="120" height="26" rx="13" fill="#F4B3C8"/><rect x="0" y="3" width="62" height="144" rx="26" fill="#E05A93"/><rect x="158" y="3" width="62" height="144" rx="26" fill="#E05A93"/><rect x="12" y="19" width="12" height="112" rx="6" fill="#EE8DB4"/><rect x="170" y="19" width="12" height="112" rx="6" fill="#EE8DB4"/></svg>
-    <h2>${esc(sess.title)}</h2><div class="focus">${esc(sess.focus)}</div>
-    <div class="hero-meta">
-      <button class="lnk" data-act="page" data-page="settings" aria-label="Program week, change start date">${notStarted?`Starts ${fmtShort(S.settings.startDate)}`:`Week ${wk}${ph?` · ${ph.title.charAt(0)}${ph.title.slice(1).toLowerCase()}`:" · Keep building"}`}</button>
-      <button class="lnk" data-act="switch-session">Switch workout</button>
-    </div></section>`;
-  h += encourageCard();
+  let h = `<section class="hero"><div class="date">${fmt(date)} · ${notStarted?`Starts ${fmtShort(S.settings.startDate)}`:`Week ${wk}`}</div>
+    <h2>${esc(sess.title)}</h2><div class="focus">${esc(sess.focus)}</div></section>`;
+  if (sess.type==="lift") h += (log && log.done) ? doneBox() : workoutCard(date, sess, log, wk);
+  else h += renderMove(date, sid, sess);
   h += weekStrip(date);
   h += targetsStrip(date);
-  if (sess.type==="lift") h += renderLift(date, sid, sess, wk, log);
-  else h += renderMove(date, sid, sess);
+  h += encourageCard();
+  const dk = dayKey(date), din = WEEKDAYS.includes(dk) ? dinnerFor(dk) : null;
+  h += `<button class="card dincard" data-act="tab" data-tab="meals"><div class="grow"><div class="eyebrow">Tonight's dinner</div>
+    <div class="dn">${din?esc(din.name):"Leftovers, a family meal or a favorite"}</div>
+    <div class="muted small">${din?`${comma(din.kcal*myMult())} kcal · ${Math.round(din.protein*myMult())} g protein`:"Keep portions reasonable and protein in mind"}</div></div>${ICON.right}</button>`;
+  if (sess.type==="lift") h += `<h2 id="exList">Today's exercises</h2>` + renderLift(date, sid, sess, wk, log);
   h += renderVids(date);
-  /* next steps */
-  const dk = dayKey(date);
-  const din = WEEKDAYS.includes(dk) ? dinnerFor(dk) : null;
-  h += `<h2>Next steps</h2><div class="card">
-    <div class="row between"><div class="grow"><div class="eyebrow">Tonight's dinner</div>
-    <div style="font-weight:700;margin-top:2px">${din?esc(din.name):"Leftovers, a family meal or a favorite"}</div>
-    <div class="muted small">${din?`${comma(din.kcal*myMult())} kcal · ${Math.round(din.protein*myMult())} g protein`:"Keep portions reasonable and protein in mind"}</div></div>
-    <button class="btn sm" data-act="tab" data-tab="meals">View</button></div></div>
-    <div class="card"><div class="eyebrow">Daily movement</div><div style="font-weight:700;margin-top:2px">About 6,000 steps</div>
+  h += `<div class="card"><div class="eyebrow">Daily movement</div><div style="font-weight:700;margin-top:2px">About 6,000 steps</div>
     <div class="muted small">A good starting point. Build up gradually toward about 150 minutes of moderate activity a week.</div></div>`;
   if (ph) h += `<div class="card soft"><div class="eyebrow" style="color:var(--accent)">Weeks ${ph.from}–${ph.to}: ${ph.title}</div>
     <ul class="clean small">${ph.items.map(i=>`<li>${esc(i)}</li>`).join("")}</ul></div>`;
   else if (!notStarted) h += `<div class="card soft"><div class="eyebrow" style="color:var(--accent)">Past week 12</div><div class="small" style="margin-top:4px">Look back at your weight trend, waist, strength, energy and how your clothes fit, then adjust from what you see. Keep doing what's working.</div></div>`;
   return h;
 }
+/* the top card: how far through today's workout, and the next move */
+function workoutCard(date, sess, log, wk){
+  const exs = sess.ex, isDone = x => viewSets(log, x, wk).every(z=>z.d);
+  const doneN = exs.filter(isDone).length, cur = exs.find(x=>!isDone(x)) || exs[0], k = EX[cur.id].kind;
+  const last = lastSummary(cur.id, k, date), C = 2*Math.PI*26, frac = exs.length ? doneN/exs.length : 0;
+  const presc = cur.mins ? `${cur.mins[0]}–${cur.mins[1]} minutes` : `${setsFor(cur, wk)} × ${repsLabel(cur)} ${cur.unit}`;
+  return `<div class="card wcard"><div class="wrow">
+      <div class="ring" aria-label="${doneN} of ${exs.length} exercises done"><svg viewBox="0 0 62 62"><circle cx="31" cy="31" r="26" fill="none" stroke="var(--accent-soft)" stroke-width="7"/><circle cx="31" cy="31" r="26" fill="none" stroke="var(--accent)" stroke-width="7" stroke-linecap="round" stroke-dasharray="${C.toFixed(1)}" stroke-dashoffset="${(C*(1-frac)).toFixed(1)}" transform="rotate(-90 31 31)"/></svg><b>${doneN}/${exs.length}</b></div>
+      <div class="grow"><div class="eyebrow">${doneN?"Up next":"First up"}</div><div class="wnext">${esc(exName(cur))}</div><div class="muted small">${esc(presc)}${last && last.w?` · last time ${esc(last.w)} lb`:""}</div></div></div>
+    <div class="wbtns"><button class="btn primary" data-act="go-cur">${doneN?"Continue workout":"Start workout"}</button><button class="btn" data-act="switch-session">Switch</button></div></div>`;
+}
+function doneBox(){
+  const log = S.workouts[today()];
+  return `<div class="card donebox"><div class="donein"><div class="heart"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+    <div class="big">Workout complete</div><div class="muted">${log && log.via==="video"?"Done with a video workout. Nice.":"Nice work. Every session counts."}</div>
+    <button class="btn sm ghost" style="margin-top:10px" data-act="undo-complete">Undo</button></div></div>`;
+}
 function renderLift(date, sid, sess, wk, log){
   let h = `<p class="guide-t">Stop each set with 2–3 reps left${wk<=2?". Weeks 1–2: two sets, lighter weights":""}. <button class="lnk" data-act="timer-start">Rest timer, ${S.settings.restDefault} s</button></p>`;
-  if (log && log.done){
-    h += `<div class="card donebox"><div class="heart"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div><div class="big">Workout complete</div><div class="muted">${log.via==="video"?"Done with a video workout. Nice.":"Nice work. Every session counts."}</div>
-      <button class="btn sm ghost" style="margin-top:8px" data-act="undo-complete">Undo</button></div>`;
-  }
   const cur = (log && log.done) ? -1 : sess.ex.findIndex(x=>!viewSets(log, x, wk).every(z=>z.d));
   sess.ex.forEach((ex,i)=>{ h += renderExercise(date, ex, i, wk, log, i===cur); });
   if (!(log && log.done)) h += `<div class="complete"><button class="btn primary block" data-act="complete">Mark workout complete</button></div>`;
@@ -2126,7 +2127,8 @@ function renderSettings(){
   <div class="card"><h3>Your plan</h3><p class="muted small" style="margin:0 0 10px">${S.custom ? `Built from your answers: ${S.custom.days} workouts a week, ${comma(PLAN.targets.kcal)} kcal and ${PLAN.targets.protein} g protein a day.` : "This is the starter plan. Answer a few questions to fit it to your goal, schedule, equipment and food."}</p>
     <button class="btn block${S.custom?"":" primary"}" data-act="onb-open">${S.custom?"Retake the questions":"Personalize my plan"}</button>
     ${S.custom?`<button class="btn ghost block" style="margin-top:8px" data-act="plan-reset">Go back to the starter plan</button>`:""}</div>
-  <div class="card"><h3>Daily encouragement</h3><div class="toggle">${[["verse","Bible verse"],["note","Encouraging note"],["none","Off"]].map(([v,l])=>`<button class="${(st.encourage||"none")===v?"on":""}" data-act="encourage" data-v="${v}">${l}</button>`).join("")}</div></div>
+  <div class="card"><h3>Daily encouragement</h3><div class="toggle">${[["verse","Bible verse"],["note","Encouraging note"],["none","Off"]].map(([v,l])=>`<button class="${(st.encourage||"none")===v?"on":""}" data-act="encourage" data-v="${v}">${l}</button>`).join("")}</div>
+    ${(st.encourage||"none")==="verse"?`<p class="muted tiny" style="margin:10px 0 0">${esc(ESV_NOTICE)}</p>`:""}</div>
   <div class="card"><h3>Workout reminders</h3><p class="muted small" style="margin:0 0 6px">Adds your workout days to your phone's calendar with an alert at this time, for the next 12 weeks.</p>
     <label class="field"><span>Reminder time</span><input type="time" data-in="remindTime" value="${esc(st.remindTime||"06:30")}"></label>
     <button class="btn block" data-act="ics">Add to my calendar</button></div>
@@ -2257,6 +2259,7 @@ document.addEventListener("click", e=>{
       $("#vidName").value = v.n||""; $("#vidName").dataset.auto = "0"; $("#vidMin").value = v.m||""; $("#vidMin").dataset.auto = "0";
       capPreview(); $("#sheet").scrollTop = 0; break;
     }
+    case "go-cur": { const t = document.querySelector(".ex.cur") || document.getElementById("exList"); if (t) window.scrollTo({top: t.getBoundingClientRect().top + window.scrollY - 76, behavior:"smooth"}); break; }
     case "onb-open": openOnb(); break;
     case "onb-close": closeOnb(); break;
     case "onb-next": { const steps = onbVisible(); if (steps[ONB.i].ok(ONB.a)){ ONB.i = Math.min(ONB.i+1, steps.length-1); onbRender(); } break; }
@@ -2443,38 +2446,39 @@ document.addEventListener("submit", e=>{
 document.addEventListener("keydown", e=>{ if (e.key==="Escape") closeSheet(); });
 
 /* ===================== ONBOARDING ===================== */
-const VERSES = [
-  ["She girdeth her loins with strength, and strengtheneth her arms.","Proverbs 31:17"],
-  ["I can do all things through Christ which strengtheneth me.","Philippians 4:13"],
-  ["But they that wait upon the LORD shall renew their strength; they shall mount up with wings as eagles; they shall run, and not be weary; and they shall walk, and not faint.","Isaiah 40:31"],
-  ["Strength and honour are her clothing; and she shall rejoice in time to come.","Proverbs 31:25"],
-  ["And let us not be weary in well doing: for in due season we shall reap, if we faint not.","Galatians 6:9"],
-  ["I will praise thee; for I am fearfully and wonderfully made: marvellous are thy works; and that my soul knoweth right well.","Psalm 139:14"],
-  ["Have not I commanded thee? Be strong and of a good courage; be not afraid, neither be thou dismayed: for the LORD thy God is with thee whithersoever thou goest.","Joshua 1:9"],
-  ["This is the day which the LORD hath made; we will rejoice and be glad in it.","Psalm 118:24"],
-  ["For God hath not given us the spirit of fear; but of power, and of love, and of a sound mind.","2 Timothy 1:7"],
-  ["He giveth power to the faint; and to them that have no might he increaseth strength.","Isaiah 40:29"],
-  ["Fear thou not; for I am with thee: be not dismayed; for I am thy God: I will strengthen thee; yea, I will help thee; yea, I will uphold thee with the right hand of my righteousness.","Isaiah 41:10"],
+const VERSES = [ /* ESV. Crossway allows up to 500 verses with the notice shown in Settings */
+  ["She dresses herself with strength and makes her arms strong.","Proverbs 31:17"],
+  ["I can do all things through him who strengthens me.","Philippians 4:13"],
+  ["But they who wait for the LORD shall renew their strength; they shall mount up with wings like eagles; they shall run and not be weary; they shall walk and not faint.","Isaiah 40:31"],
+  ["Strength and dignity are her clothing, and she laughs at the time to come.","Proverbs 31:25"],
+  ["And let us not grow weary of doing good, for in due season we will reap, if we do not give up.","Galatians 6:9"],
+  ["I praise you, for I am fearfully and wonderfully made. Wonderful are your works; my soul knows it very well.","Psalm 139:14"],
+  ["Have I not commanded you? Be strong and courageous. Do not be frightened, and do not be dismayed, for the LORD your God is with you wherever you go.","Joshua 1:9"],
+  ["This is the day that the LORD has made; let us rejoice and be glad in it.","Psalm 118:24"],
+  ["For God gave us a spirit not of fear but of power and love and self-control.","2 Timothy 1:7"],
+  ["He gives power to the faint, and to him who has no might he increases strength.","Isaiah 40:29"],
+  ["Fear not, for I am with you; be not dismayed, for I am your God; I will strengthen you, I will help you, I will uphold you with my righteous right hand.","Isaiah 41:10"],
   ["God is our refuge and strength, a very present help in trouble.","Psalm 46:1"],
-  ["It is of the LORD's mercies that we are not consumed, because his compassions fail not. They are new every morning: great is thy faithfulness.","Lamentations 3:22–23"],
-  ["Come unto me, all ye that labour and are heavy laden, and I will give you rest.","Matthew 11:28"],
-  ["And whatsoever ye do, do it heartily, as to the Lord, and not unto men;","Colossians 3:23"],
-  ["Being confident of this very thing, that he which hath begun a good work in you will perform it until the day of Jesus Christ:","Philippians 1:6"],
-  ["Commit thy works unto the LORD, and thy thoughts shall be established.","Proverbs 16:3"],
-  ["The LORD is my strength and my shield; my heart trusted in him, and I am helped: therefore my heart greatly rejoiceth; and with my song will I praise him.","Psalm 28:7"],
-  ["My flesh and my heart faileth: but God is the strength of my heart, and my portion for ever.","Psalm 73:26"],
-  ["My grace is sufficient for thee: for my strength is made perfect in weakness.","2 Corinthians 12:9"],
-  ["Trust in the LORD with all thine heart; and lean not unto thine own understanding. In all thy ways acknowledge him, and he shall direct thy paths.","Proverbs 3:5–6"],
-  ["The LORD is my light and my salvation; whom shall I fear? the LORD is the strength of my life; of whom shall I be afraid?","Psalm 27:1"],
-  ["Whether therefore ye eat, or drink, or whatsoever ye do, do all to the glory of God.","1 Corinthians 10:31"],
-  ["It is God that girdeth me with strength, and maketh my way perfect.","Psalm 18:32"],
-  ["The LORD God is my strength, and he will make my feet like hinds' feet, and he will make me to walk upon mine high places.","Habakkuk 3:19"],
-  ["Thou wilt keep him in perfect peace, whose mind is stayed on thee: because he trusteth in thee.","Isaiah 26:3"],
-  ["Know ye not that they which run in a race run all, but one receiveth the prize? So run, that ye may obtain.","1 Corinthians 9:24"],
-  ["I have set the LORD always before me: because he is at my right hand, I shall not be moved.","Psalm 16:8"],
-  ["Commit thy way unto the LORD; trust also in him; and he shall bring it to pass.","Psalm 37:5"],
-  ["Neither be ye sorry; for the joy of the LORD is your strength.","Nehemiah 8:10"]
+  ["The steadfast love of the LORD never ceases; his mercies never come to an end; they are new every morning; great is your faithfulness.","Lamentations 3:22–23"],
+  ["Come to me, all who labor and are heavy laden, and I will give you rest.","Matthew 11:28"],
+  ["Whatever you do, work heartily, as for the Lord and not for men.","Colossians 3:23"],
+  ["And I am sure of this, that he who began a good work in you will bring it to completion at the day of Jesus Christ.","Philippians 1:6"],
+  ["Commit your work to the LORD, and your plans will be established.","Proverbs 16:3"],
+  ["The LORD is my strength and my shield; in him my heart trusts, and I am helped; my heart exults, and with my song I give thanks to him.","Psalm 28:7"],
+  ["My flesh and my heart may fail, but God is the strength of my heart and my portion forever.","Psalm 73:26"],
+  ["My grace is sufficient for you, for my power is made perfect in weakness.","2 Corinthians 12:9"],
+  ["Trust in the LORD with all your heart, and do not lean on your own understanding. In all your ways acknowledge him, and he will make straight your paths.","Proverbs 3:5–6"],
+  ["The LORD is my light and my salvation; whom shall I fear? The LORD is the stronghold of my life; of whom shall I be afraid?","Psalm 27:1"],
+  ["So, whether you eat or drink, or whatever you do, do all to the glory of God.","1 Corinthians 10:31"],
+  ["You keep him in perfect peace whose mind is stayed on you, because he trusts in you.","Isaiah 26:3"],
+  ["Do you not know that in a race all the runners run, but only one receives the prize? So run that you may obtain it.","1 Corinthians 9:24"],
+  ["I have set the LORD always before me; because he is at my right hand, I shall not be shaken.","Psalm 16:8"],
+  ["Commit your way to the LORD; trust in him, and he will act.","Psalm 37:5"],
+  ["Do not be grieved, for the joy of the LORD is your strength.","Nehemiah 8:10"],
+  ["Rejoice in hope, be patient in tribulation, be constant in prayer.","Romans 12:12"],
+  ["The LORD is my shepherd; I shall not want.","Psalm 23:1"]
 ];
+const ESV_NOTICE = "Scripture quotations are from the ESV® Bible (The Holy Bible, English Standard Version®), © 2001 by Crossway, a publishing ministry of Good News Publishers. Used by permission. All rights reserved.";
 const NOTES = ["Showing up counts more than a perfect workout.","You don't have to feel motivated. You just have to start.","Rest days are part of the plan, not a break from it.",
   "Progress is slow until you look back.","Ten minutes still counts.","Eat the protein first.","Compare this month to last month, not to anyone else.",
   "Your body is doing the work even when the scale is quiet.","One more rep, or a little more weight, than last time. That's the whole trick.",
@@ -2485,13 +2489,14 @@ const NOTES = ["Showing up counts more than a perfect workout.","You don't have 
 function encourageCard(){
   const m = S.settings.encourage; if (!m || m==="none") return "";
   const i = Math.abs(daysBetween("2026-01-01", today()));
-  if (m==="verse"){ const v = VERSES[i % VERSES.length]; return `<figure class="daily"><blockquote>${esc(v[0])}</blockquote><figcaption>${esc(v[1])} (KJV)</figcaption></figure>`; }
+  if (m==="verse"){ const v = VERSES[i % VERSES.length]; return `<figure class="daily"><blockquote>${esc(v[0])}</blockquote><figcaption>${esc(v[1])} (ESV)</figcaption></figure>`; }
   return `<figure class="daily"><blockquote>${esc(NOTES[i % NOTES.length])}</blockquote></figure>`;
 }
 const ONB = {i:0, a:{}, redo:false};
 const EQUIP_CH = [["db","Dumbbells"],["bench","A bench"],["rack","Barbell and squat rack"],["bands","Resistance bands"],["rings","Rings or suspension straps"],["pullup","Pull-up bar"],["dip","Dip bars"],["kb","Kettlebell"],["cardio","Bike or treadmill"],["gym","A full gym"],["none","Nothing, just me"]];
 const ONB_STEPS = [
   {id:"intro", title:a=>"Build your plan", help:a=>"About two minutes. Your answers set your workouts, calorie and protein targets, and dinners. They stay on this phone.",
+    top:`<div class="onb-hero" aria-hidden="true"><span><svg viewBox="0 0 220 150"><rect x="50" y="62" width="120" height="26" rx="13" fill="#F4B3C8"/><rect x="0" y="3" width="62" height="144" rx="26" fill="#D9558C"/><rect x="158" y="3" width="62" height="144" rx="26" fill="#D9558C"/><rect x="12" y="19" width="12" height="112" rx="6" fill="#EC8DB2"/><rect x="170" y="19" width="12" height="112" rx="6" fill="#EC8DB2"/></svg></span></div>`,
     body:a=>ONB.redo || Object.keys(S.workouts).length ? `<p class="small">Your logs, weigh-ins and history stay exactly as they are.</p>` : "", ok:a=>true},
   {id:"name", title:a=>"What should we call you?", help:a=>"Optional. It's only used for your morning greeting.",
     body:a=>`<label class="field"><span>First name</span><input data-in="onb" data-k="name" value="${esc(a.name||"")}" autocomplete="given-name" maxlength="40" placeholder="Your name"></label>`, ok:a=>true},
@@ -2525,7 +2530,7 @@ const ONB_STEPS = [
   {id:"house", title:a=>"How many people do you cook dinner for?", help:a=>"Sets the grocery amounts. You can change it later.",
     body:a=>`<div class="row" style="gap:16px">${`<div class="stepper"><button data-act="onb-house" data-d="-1" aria-label="Fewer">−</button><span>${a.household||1}</span><button data-act="onb-house" data-d="1" aria-label="More">+</button></div>`}<span class="muted">${(a.household||1)===1?"Just me":`${a.household} people`}</span></div>`, ok:a=>true},
   {id:"encourage", title:a=>"A little encouragement each day?", help:a=>"Shows at the top of Today. You can change it in Settings.",
-    body:a=>chs("encourage",[["verse","A Bible verse","King James Version"],["note","A short encouraging note"],["none","No thanks"]],a), ok:a=>!!a.encourage},
+    body:a=>chs("encourage",[["verse","A Bible verse","English Standard Version"],["note","A short encouraging note"],["none","No thanks"]],a), ok:a=>!!a.encourage},
   {id:"remind", title:a=>"When do you usually work out?", help:a=>"At the end you can add your workout days to your phone's calendar, so you get a reminder.",
     body:a=>chs("remind",[["06:30","Morning","6:30 am"],["12:00","Midday","12:00 pm"],["18:00","Evening","6:00 pm"],["none","It changes","No reminders"]],a), ok:a=>!!a.remind},
   {id:"summary", title:a=>"Your plan", help:a=>"Estimates to start from. Adjust them once you see how your body responds.", body:a=>onbSummary(a), ok:a=>true},
@@ -2558,7 +2563,7 @@ function onbRender(){
   $("#onb").innerHTML = `<div class="onb-top">${ONB.i>0?`<button class="mini" data-act="onb-back" aria-label="Back">${ICON.left}</button>`:`<span style="width:38px"></span>`}
       <div class="onb-prog" aria-hidden="true"><i style="width:${Math.round((ONB.i)/(steps.length-1)*100)}%"></i></div>
       <button class="mini" data-act="onb-close" aria-label="Close">${ICON.x}</button></div>
-    <div class="onb-body"><h2>${esc(st.title(a))}</h2><p class="help">${esc(st.help(a))}</p>${st.body(a)}</div>
+    <div class="onb-body">${st.top||""}<h2>${esc(st.title(a))}</h2><p class="help">${esc(st.help(a))}</p>${st.body(a)}</div>
     <div class="onb-foot">${last
       ? `<button class="btn primary block" data-act="onb-start">${ONB.redo?"Use this plan":"Start my plan"}</button>${a.remind && a.remind!=="none"?`<button class="btn block" data-act="onb-ics">Add workout reminders to my calendar</button>`:""}`
       : `<button class="btn primary block" data-act="onb-next" id="onbNext" ${st.ok(a)?"":"disabled"}>${st.id==="intro"?"Start":"Next"}</button>${st.id==="intro" && !ONB.redo?`<button class="btn ghost block" data-act="onb-close">${Object.keys(S.workouts).length?"Not now":"Use the starter plan"}</button>`:""}`}</div>`;
