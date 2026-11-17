@@ -449,6 +449,31 @@ nav.tabs button.on::before{content:"";position:absolute;inset:8px 3px;border-rad
 #sheet h3{font:400 32px/1.05 var(--serif);letter-spacing:-.015em;margin:6px 0 12px}
 #sheet .grab{background:var(--line)}
 .chart text{font-family:var(--font)}
+/* onboarding */
+.onb{position:fixed;inset:0;z-index:70;background:var(--bg);display:none;flex-direction:column;padding:calc(env(safe-area-inset-top,0px) + 8px) 0 calc(env(safe-area-inset-bottom,0px) + 12px)}
+.onb.on{display:flex}
+.onb-top{display:flex;align-items:center;gap:10px;padding:6px 16px 8px;max-width:560px;margin:0 auto;width:100%;min-height:52px}
+.onb-top .mini{flex:none}
+.onb-prog{flex:1;height:6px;border-radius:9px;background:var(--line);overflow:hidden}
+.onb-prog i{display:block;height:100%;background:var(--pink,var(--accent));border-radius:9px;transition:width .25s}
+.onb-body{flex:1;overflow:auto;padding:4px 16px 24px;max-width:560px;margin:0 auto;width:100%;-webkit-overflow-scrolling:touch}
+.onb-body h2{font-size:36px;line-height:1.02;margin:14px 0 8px}
+.onb-body .help{color:var(--muted);font-size:15px;margin:0 0 18px;line-height:1.45}
+.onb-foot{padding:10px 16px 0;max-width:560px;margin:0 auto;width:100%;display:flex;flex-direction:column;gap:8px}
+.ch{display:flex;flex-direction:column;gap:10px}
+.ch.g2{display:grid;grid-template-columns:1fr 1fr}
+.ch button{display:block;text-align:left;width:100%;min-height:56px;padding:12px 16px;border-radius:18px;border:1.5px solid var(--line);background:var(--card);font:inherit;font-size:17px;font-weight:600;color:var(--ink)}
+.ch button small{display:block;font-size:13px;font-weight:500;color:var(--muted);margin-top:2px}
+.ch button.on{border-color:var(--ink);background:var(--ink);color:var(--bg)}
+.ch button.on small{color:inherit;opacity:.8}
+.onb-sub{font-weight:700;font-size:14px;margin:18px 2px 8px}
+.onb-sum .big{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:6px 0 4px}
+.onb-sum .big b{display:block;font:400 40px/1 var(--serif,inherit);letter-spacing:-.02em}
+.onb-sum .big span{font-size:13px;color:var(--muted);font-weight:600}
+.onb-sum .sched{margin-top:6px}
+.daily{margin:18px 2px 0;padding:14px 0 0;border-top:1px solid var(--line)}
+.daily blockquote{margin:0;font:italic 400 21px/1.3 var(--serif,inherit);color:var(--ink)}
+.daily figcaption{margin-top:6px;font-size:13px;color:var(--muted);font-weight:600}
 #print{display:none}
 @media print{
   @page{size:Letter;margin:14mm 14mm 16mm}
@@ -480,6 +505,7 @@ nav.tabs button.on::before{content:"";position:absolute;inset:8px 3px;border-rad
   <button class="iconbtn" data-act="page" data-page="settings" aria-label="Settings" id="btnSettings"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button>
 </div></header>
 <main class="wrap" id="view"></main>
+<div class="onb" id="onb" role="dialog" aria-modal="true" aria-label="Build your plan"></div>
 <div id="timer" role="timer" aria-live="polite"><div class="t" id="timerT">1:30</div><div class="lb" id="timerL">Rest<br>between sets</div><button data-act="timer-add" data-s="-15">−15</button><button data-act="timer-add" data-s="15">+15</button><button data-act="timer-stop">Done</button></div>
 <nav class="tabs"><div class="in">
   <button data-act="tab" data-tab="today"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 6.5v11M17.5 6.5v11M3.5 9v6M20.5 9v6M6.5 12h11"/></svg>Today</button>
@@ -494,7 +520,7 @@ nav.tabs button.on::before{content:"";position:absolute;inset:8px 3px;border-rad
 <input type="file" id="importFile" accept="application/json,.json" hidden>
 <script>
 /* ===================== PLAN DATA (from the plan, verbatim numbers) ===================== */
-const PLAN = {
+let PLAN = {
   targets:{kcal:1750,kcalMin:1700,kcalMax:1800,protein:120,proteinMin:110,proteinMax:130,maintMin:2000,maintMax:2150},
   start:165, goalMin:140, goalMax:145,
   equipment:["Adjustable dumbbells up to 55 lbs","Barbell and squat rack with up to 300 lbs","Workout bench","Dip bars","Gymnastic rings","Pull-up and dip station combination","Stationary bike","Punching bag","Yoga mat"],
@@ -571,10 +597,77 @@ const DINNERS = {
       "Toss the romaine with 2 tbsp dressing, then top with the chicken, Parmesan and croutons."],
     tip:"Measure the dressing: it's the easiest place for calories to creep up."}
 };
-const DINNER_ORDER = ["salmon","chicken","burgers","spaghetti","caesar"];
+/* more dinners so vegetarian, pescatarian, dairy-free and gluten-free plans have a full week (estimates per serving) */
+Object.assign(DINNERS, {
+  tofu:{id:"tofu",name:"Crispy Tofu Stir-Fry With Rice",kcal:595,protein:40,flags:{},
+    ing:[
+      {t:"6 oz extra-firm tofu",g:[{n:"Extra-firm tofu",q:6,u:"oz",c:"Produce",f:"a 14 oz block makes about 2 servings"}]},
+      {t:"2/3 cup cooked rice",g:[{n:"Rice",q:0.67,u:"cup cooked",c:"Grains & Bread",f:"≈ 1/4 cup dry per serving"}]},
+      {t:"1 1/2 cups stir-fry vegetables",g:[{n:"Stir-fry vegetables",q:1.5,u:"cup",c:"Frozen",f:"a frozen bag works"}]},
+      {t:"1/3 cup shelled edamame",g:[{n:"Shelled edamame",q:1/3,u:"cup",c:"Frozen"}]},
+      {t:"1 tablespoon tamari (gluten-free soy sauce)",g:[{n:"Tamari or soy sauce",q:1,u:"tbsp",c:"Pantry"}]},
+      {t:"1 teaspoon honey",g:[{n:"Honey",q:1,u:"tsp",c:"Pantry"}]},
+      {t:"1 1/2 teaspoons oil",g:[{n:"Olive oil",q:1.5,u:"tsp",c:"Pantry"}]},
+      {t:"Garlic and ginger",g:[{n:"Garlic",q:1,u:"clove",c:"Produce"},{n:"Ginger",q:0,u:"",c:"Produce"}]}
+    ],
+    steps:["Press the tofu between towels for 10 min, then cut it into cubes.",
+      "Toss the tofu with 1 tsp of the tamari. Air fry at 400°F for 12–15 min, shaking once, or pan-fry it in the oil until golden.",
+      "Stir-fry the vegetables and edamame in a hot pan for 4–5 min with the garlic and ginger.",
+      "Stir in the rest of the tamari and the honey, add the tofu, and toss. Serve over the rice."],
+    tip:"A frozen stir-fry vegetable bag makes this a 20-minute dinner."},
+  shrimp:{id:"shrimp",name:"Garlic Shrimp Rice Bowls",kcal:525,protein:45,flags:{fish:1},
+    ing:[
+      {t:"6 oz cooked shrimp (about 7 oz raw, peeled)",g:[{n:"Shrimp (peeled)",q:7,u:"oz",c:"Meat & Fish",f:"frozen works"}]},
+      {t:"3/4 cup cooked rice",g:[{n:"Rice",q:0.75,u:"cup cooked",c:"Grains & Bread",f:"≈ 1/4 cup dry per serving"}]},
+      {t:"1 1/2 cups vegetables (zucchini, peppers or green beans)",g:[{n:"Vegetables for bowls",q:1.5,u:"cup",c:"Produce"}]},
+      {t:"1/4 avocado",g:[{n:"Avocados",q:0.25,u:"",c:"Produce"}]},
+      {t:"2 teaspoons olive oil",g:[{n:"Olive oil",q:2,u:"tsp",c:"Pantry"}]},
+      {t:"Garlic, lemon and chili flakes",g:[{n:"Garlic",q:2,u:"clove",c:"Produce"},{n:"Lemon",q:0.5,u:"",c:"Produce"}]}
+    ],
+    steps:["Cook the rice, or reheat leftover rice.",
+      "Heat 1 tsp oil in a pan and cook the vegetables for 4–5 min. Move them to the plates.",
+      "Add the rest of the oil, the garlic and a pinch of chili flakes, then the shrimp. Cook 2–3 min per side until pink and opaque.",
+      "Squeeze lemon over everything and serve with the avocado."],
+    tip:"Frozen raw shrimp thaws in about 10 minutes in a bowl of cold water."},
+  tacos:{id:"tacos",name:"Sweet Potato, Black Bean & Egg Tacos",kcal:585,protein:32,flags:{dairy:1},
+    ing:[
+      {t:"3 small corn tortillas",g:[{n:"Corn tortillas",q:3,u:"",c:"Grains & Bread"}]},
+      {t:"2 eggs, scrambled",g:[{n:"Eggs",q:2,u:"",c:"Dairy & Eggs"}]},
+      {t:"1/2 cup black beans",g:[{n:"Black beans (canned)",q:0.5,u:"cup",c:"Pantry",f:"a 15 oz can is about 1 1/2 cups"}]},
+      {t:"100 g sweet potato, cubed and roasted",g:[{n:"Sweet potato",q:100,u:"g",c:"Produce"}]},
+      {t:"1/4 cup plain Greek yogurt with lime",g:[{n:"Nonfat Greek yogurt",q:0.25,u:"cup",c:"Dairy & Eggs"},{n:"Limes",q:0.5,u:"",c:"Produce"}]},
+      {t:"Salsa",g:[{n:"Salsa",q:2,u:"tbsp",c:"Pantry"}]},
+      {t:"1 teaspoon oil",g:[{n:"Olive oil",q:1,u:"tsp",c:"Pantry"}]}
+    ],
+    steps:["Heat the oven to 425°F. Toss the sweet potato with the oil and a pinch of salt, cumin and chili powder, and roast 20–25 min.",
+      "Warm the black beans with a splash of water and a pinch of cumin.",
+      "Scramble the eggs over medium-low heat until just set.",
+      "Warm the tortillas in a dry pan and fill them with the sweet potato, beans and eggs. Top with salsa and the yogurt mixed with lime juice."],
+    tip:"Roast a double tray of sweet potato. It keeps for 4 days and works in lunches."},
+  dal:{id:"dal",name:"Red Lentil & Spinach Dal",kcal:545,protein:33,flags:{dairy:1},
+    ing:[
+      {t:"1/3 cup dry red lentils",g:[{n:"Red lentils (dry)",q:1/3,u:"cup",c:"Pantry"}]},
+      {t:"1/2 cup crushed tomatoes",g:[{n:"Crushed tomatoes",q:0.5,u:"cup",c:"Pantry",f:"a 28 oz can is about 3 cups"}]},
+      {t:"1/4 cup light coconut milk",g:[{n:"Light coconut milk",q:0.25,u:"cup",c:"Pantry"}]},
+      {t:"2 cups fresh spinach",g:[{n:"Spinach",q:2,u:"cup",c:"Produce"}]},
+      {t:"1/4 onion, garlic and ginger",g:[{n:"Onions",q:0.25,u:"",c:"Produce"},{n:"Garlic",q:1,u:"clove",c:"Produce"},{n:"Ginger",q:0,u:"",c:"Produce"}]},
+      {t:"1 teaspoon curry powder and 1/2 teaspoon cumin",g:[{n:"Curry powder",q:0,u:"",c:"Pantry"}]},
+      {t:"1/2 cup cooked rice",g:[{n:"Rice",q:0.5,u:"cup cooked",c:"Grains & Bread",f:"≈ 1/4 cup dry per serving"}]},
+      {t:"1/2 cup plain Greek yogurt on top (skip for dairy-free)",g:[{n:"Nonfat Greek yogurt",q:0.5,u:"cup",c:"Dairy & Eggs"}]},
+      {t:"1 teaspoon oil",g:[{n:"Olive oil",q:1,u:"tsp",c:"Pantry"}]}
+    ],
+    steps:["Soften the onion in the oil for 5 min, then add the garlic, ginger, curry powder and cumin for 1 min.",
+      "Add the rinsed lentils, crushed tomatoes and 1 cup of water. Simmer 15–20 min, stirring, until the lentils break down.",
+      "Stir in the coconut milk and spinach until the spinach wilts. Season with salt and a squeeze of lemon.",
+      "Serve over the rice with the yogurt on top."],
+    tip:"Dal freezes well. Make a double batch for lunches."}
+});
+DINNERS.salmon.flags = {fish:1}; DINNERS.chicken.flags = {meat:1};
+DINNERS.burgers.flags = {meat:1,gluten:1,dairy:1}; DINNERS.spaghetti.flags = {meat:1,gluten:1,dairy:1}; DINNERS.caesar.flags = {meat:1,gluten:1,dairy:1};
+const DINNER_ORDER = ["salmon","chicken","burgers","spaghetti","caesar","tofu","shrimp","tacos","dal"];
 const WEEKDAYS = ["mon","tue","wed","thu","fri"];
 const DAYNAME = {mon:"Monday",tue:"Tuesday",wed:"Wednesday",thu:"Thursday",fri:"Friday",sat:"Saturday",sun:"Sunday"};
-const DEFAULT_DINNER = {mon:"salmon",tue:"chicken",wed:"burgers",thu:"spaghetti",fri:"caesar"};
+let DEFAULT_DINNER = {mon:"salmon",tue:"chicken",wed:"burgers",thu:"spaghetti",fri:"caesar"};
 
 const OPTIONS = {
   breakfast:[
@@ -596,6 +689,12 @@ const OPTIONS = {
       g:[{n:"Whey protein",q:1,u:"scoop",c:"Pantry"},{n:"Apples (medium)",q:1,u:"",c:"Produce"}]}
   ]
 };
+OPTIONS.lunch.push(
+  {id:"l3",name:"Egg & Chickpea Salad Wrap",kcal:525,protein:28,flags:{gluten:1},items:["2 hard-boiled eggs mashed with 1/2 cup chickpeas","1 tablespoon hummus","1 high-fiber tortilla","Vegetables","Fruit"],
+    g:[{n:"Eggs",q:2,u:"",c:"Dairy & Eggs"},{n:"Chickpeas (canned)",q:0.5,u:"cup",c:"Pantry"},{n:"Hummus",q:1,u:"tbsp",c:"Produce"},{n:"High-fiber tortillas",q:1,u:"",c:"Grains & Bread"},{n:"Vegetables for wraps & sandwiches",q:1,u:"serving",c:"Produce"},{n:"Apples (medium)",q:1,u:"",c:"Produce"}]},
+  {id:"l4",name:"Cottage Cheese Berry Bowl",kcal:400,protein:30,flags:{dairy:1,gluten:1},items:["1 cup low-fat cottage cheese","1/2 cup berries","1/4 cup granola","1 tablespoon chia seeds"],
+    g:[{n:"Low-fat cottage cheese",q:1,u:"cup",c:"Dairy & Eggs"},{n:"Berries",q:0.5,u:"cup",c:"Produce",f:"≈ 1/2 cup per serving"},{n:"Granola",q:0.25,u:"cup",c:"Grains & Bread"},{n:"Chia seeds",q:1,u:"tbsp",c:"Pantry"}]});
+[...OPTIONS.breakfast,...OPTIONS.lunch,...OPTIONS.snack].forEach(o=>{ const F = {b1:{dairy:1,gluten:1},b2:{dairy:1,gluten:1},l1:{meat:1,gluten:1},l2:{meat:1,gluten:1,dairy:1},s1:{dairy:1},s2:{dairy:1}}; if (F[o.id]) o.flags = F[o.id]; });
 const ALL_OPTIONS = [...OPTIONS.breakfast,...OPTIONS.lunch,...OPTIONS.snack];
 
 /* kind: lift (weight+reps), bw (reps only), core (reps only), hold (seconds), cardio (minutes) */
@@ -620,7 +719,7 @@ const EX = {
   bike:{name:"Stationary Bike",kind:"cardio",cue:"Easy to moderate effort: you could talk in short sentences."}
 };
 /* hist: key used for history (shared across days for same movement) */
-const SESSIONS = {
+let SESSIONS = {
   lowerA:{title:"Lower Body A",short:"Lower A",focus:"Quads and glutes",type:"lift",ex:[
     {id:"goblet",sets:[2,3],reps:10,unit:"reps"},
     {id:"rdl",sets:[2,3],reps:10,unit:"reps"},
@@ -649,9 +748,9 @@ const SESSIONS = {
   walk:{title:"Walking or Easy Cardio",short:"Walk",focus:"30–45 minute family walk or easy bike ride",type:"move",mins:[30,45]},
   rest:{title:"Rest Day",short:"Rest",focus:"Rest or gentle stretching",type:"rest"}
 };
-const SCHEDULE = {1:"lowerA",2:"upperA",3:"recovery",4:"lowerB",5:"upperB",6:"walk",0:"rest"};
-const LIFT_SESSIONS = ["lowerA","upperA","lowerB","upperB"];
-const MAIN_LIFTS = ["goblet","rdl","hipthrust","bench","incline","dbrow","ohp"];
+let SCHEDULE = {1:"lowerA",2:"upperA",3:"recovery",4:"lowerB",5:"upperB",6:"walk",0:"rest"};
+let LIFT_SESSIONS = ["lowerA","upperA","lowerB","upperB"];
+let MAIN_LIFTS = ["goblet","rdl","hipthrust","bench","incline","dbrow","ohp"];
 
 const PHASES = [
   {from:1,to:2,title:"Establish the Routine",label:"Focus on",items:["Learning correct exercise technique","Completing four weekly workouts","Getting comfortable with the equipment","Tracking food portions","Meeting protein goals","Starting a consistent walking routine"]},
@@ -659,6 +758,212 @@ const PHASES = [
   {from:5,to:8,title:"Build Momentum",label:"Focus on",items:["Progressive overload","Consistent calorie intake","Protein intake","Better endurance","Increased daily movement","Observing changes in strength and body composition"]},
   {from:9,to:12,title:"Review Results",label:"Evaluate",items:["Average weight change","Waist measurements","Strength improvements","Energy levels","Clothing fit","Workout consistency","Hunger and recovery"]}
 ];
+/* PLAN-GEN (source: tools/plan-gen.js) */
+const PGEN = (()=>{
+  /* exercises the default plan doesn't have, so other equipment setups still get a full program */
+  const EX_MORE = {
+    bbsquat:{name:"Barbell Back Squats",kind:"lift",main:true,cue:"Set the safety bars just below the bottom of your squat. Bar on your upper back, brace your core, sit down between your hips, then drive up."},
+    kbgoblet:{name:"Kettlebell Goblet Squats",kind:"lift",main:true,cue:"Hold the kettlebell by the horns at your chest. Sit down between your hips with your chest tall, then drive up through your whole foot."},
+    bwsquat:{name:"Bodyweight Squats",kind:"bw",cue:"Feet about shoulder-width apart. Sit back and down like you're reaching for a chair, chest tall, then stand all the way up.",harder:"Take 3 seconds to lower, or hold a loaded backpack at your chest."},
+    bbrdl:{name:"Barbell Romanian Deadlifts",kind:"lift",main:true,cue:"Soft knees, push your hips back and slide the bar down your thighs with a flat back. Stop at a hamstring stretch and squeeze your glutes to stand."},
+    kbrdl:{name:"Kettlebell Romanian Deadlifts",kind:"lift",main:true,cue:"Hold the kettlebell in both hands. Push your hips back with a flat back until you feel your hamstrings, then stand tall."},
+    bandgm:{name:"Banded Good Mornings",kind:"bw",cue:"Stand on the band with it over your neck. Push your hips back with a flat back, then stand tall and squeeze your glutes.",harder:"Use a stronger band, or pause at the bottom."},
+    slbridge:{name:"Single-Leg Glute Bridges",kind:"bw",cue:"One foot planted, the other leg straight. Drive through the planted heel and keep your hips level.",harder:"Pause for 2 seconds at the top."},
+    bwbridge:{name:"Glute Bridges",kind:"bw",cue:"Heels close to your glutes. Drive through your heels, squeeze at the top for a second, and keep your ribs down.",harder:"Pause for 2 seconds at the top, or try one leg at a time."},
+    bandbridge:{name:"Banded Glute Bridges",kind:"bw",cue:"Band just above your knees. Push your knees out against the band as you drive your hips up and squeeze.",harder:"Use a stronger band, or pause at the top."},
+    floorpress:{name:"Dumbbell Floor Press",kind:"lift",main:true,cue:"Lie on the floor, knees bent. Lower until your upper arms touch the floor at about 45°, pause, and press up."},
+    pushup:{name:"Push-Ups",kind:"bw",cue:"Hands under your shoulders, body in one straight line. Start on a counter, a bench or your knees if needed, and lower your chest toward your hands.",harder:"Use a lower surface, or move from knees to toes."},
+    inclinepushup:{name:"Incline Push-Ups",kind:"bw",cue:"Hands on a counter or sturdy table, body in one straight line. Lower your chest to the edge and push away.",harder:"Use a lower surface."},
+    bandrow:{name:"Band Rows",kind:"bw",cue:"Anchor the band at chest height. Pull your elbows back past your ribs and squeeze your shoulder blades together.",harder:"Step further back, or use a stronger band."},
+    ytw:{name:"Prone Y and T Raises",kind:"bw",cue:"Lie face down with your thumbs up. Lift your arms into a Y, lower, then into a T, squeezing your upper back each time.",harder:"Hold a water bottle in each hand."},
+    latpd:{name:"Lat Pulldowns",kind:"lift",main:true,cue:"Sit tall, lean back slightly and pull the bar to your upper chest, leading with your elbows. Control it back up."},
+    bandpd:{name:"Band Pulldowns",kind:"bw",cue:"Anchor the band high. Pull your elbows down to your sides and squeeze your back, then let it up slowly.",harder:"Use a stronger band."},
+    assistpull:{name:"Band-Assisted Pull-Ups",kind:"bw",cue:"Loop a band over the bar and put a knee or foot in it. Pull your chest toward the bar and lower slowly.",harder:"Use a lighter band."},
+    kbpress:{name:"Kettlebell Overhead Press",kind:"lift",cue:"Kettlebell resting on your forearm at your shoulder. Brace and press straight up without arching, then lower slowly."},
+    pikepushup:{name:"Pike Push-Ups",kind:"bw",cue:"Hips high like an upside-down V. Bend your elbows to lower your head toward the floor between your hands, then press up.",harder:"Put your feet on a step."},
+    bandcurl:{name:"Band Biceps Curls",kind:"bw",cue:"Stand on the band, elbows pinned to your sides. Curl up and lower slowly.",harder:"Use a stronger band, or shorten it."},
+    benchdip:{name:"Bench or Chair Dips",kind:"bw",cue:"Hands on the edge behind you, knees bent. Lower until your elbows are about 90°, then press up.",harder:"Straighten your legs."},
+    dips:{name:"Assisted Dips",kind:"bw",cue:"On the dip bars, keep your feet on a box or in a band for help. Lower until your shoulders are just below your elbows and press up.",harder:"Use less help from your feet."},
+    bandpushdown:{name:"Band Triceps Pushdowns",kind:"bw",cue:"Anchor the band high. Elbows pinned to your sides, push down until your arms are straight.",harder:"Use a stronger band."},
+    bandlateral:{name:"Band Lateral Raises",kind:"bw",cue:"Stand on the band. Raise your arms out to shoulder height with a slight bend in your elbows, and lower slowly.",harder:"Use a stronger band."},
+    bandwalk:{name:"Banded Side Walks",kind:"bw",cue:"Band above your knees or at your ankles, slight squat. Step sideways, keeping tension on the band the whole time.",harder:"Use a stronger band or sit lower."},
+    clam:{name:"Clamshells",kind:"bw",cue:"Lie on your side, knees bent, feet together. Lift your top knee without rolling your hips back.",harder:"Add a band above your knees."},
+    plank:{name:"Planks",kind:"hold",cue:"Elbows under your shoulders, body in one straight line, squeeze your glutes. Knees down is a great place to start."},
+    curtsy:{name:"Curtsy Lunges",kind:"bw",cue:"Step one foot back and across behind you, lower with your chest tall, and drive back up through the front heel.",harder:"Hold a weight at your chest."},
+    brisk:{name:"Brisk Walk or March in Place",kind:"cardio",cue:"A pace where you can talk in short sentences."},
+  };
+  const has = (E, k) => E.has("gym") || E.has(k);
+  const PICK = {
+    squat: (E,L) => has(E,"rack") && L!=="new" ? "bbsquat" : has(E,"db") ? "goblet" : has(E,"kb") ? "kbgoblet" : "bwsquat",
+    hinge: (E) => has(E,"db") ? "rdl" : has(E,"rack") ? "bbrdl" : has(E,"kb") ? "kbrdl" : has(E,"bands") ? "bandgm" : "slbridge",
+    lunge: () => "revlunge",
+    thrust: (E) => has(E,"bench") && (has(E,"db") || has(E,"rack")) ? "hipthrust" : has(E,"db") ? "bridge" : has(E,"bands") ? "bandbridge" : "bwbridge",
+    bridge: (E) => has(E,"db") ? "bridge" : has(E,"bands") ? "bandbridge" : "bwbridge",
+    stepup: (E) => has(E,"bench") ? "stepup" : "curtsy",
+    split: () => "splitsquat",
+    abductor: (E) => has(E,"bands") ? "bandwalk" : "clam",
+    core1: () => "deadbug", core2: () => "sideplank", core3: () => "plank",
+    hpush: (E) => has(E,"db") && has(E,"bench") ? "bench" : has(E,"db") ? "floorpress" : "pushup",
+    incline: (E) => has(E,"db") && has(E,"bench") ? "incline" : "inclinepushup",
+    hpull: (E) => has(E,"db") ? "dbrow" : has(E,"rings") ? "ringrow" : has(E,"bands") ? "bandrow" : "ytw",
+    hpull2: (E) => has(E,"rings") ? "ringrow" : E.has("gym") ? "latpd" : has(E,"pullup") && has(E,"bands") ? "assistpull" : has(E,"bands") ? "bandpd" : "ytw",
+    vpush: (E) => has(E,"db") ? "ohp" : has(E,"kb") ? "kbpress" : "pikepushup",
+    lateral: (E) => has(E,"db") ? "lateral" : has(E,"bands") ? "bandlateral" : null,
+    biceps: (E) => has(E,"db") ? "curl" : has(E,"bands") ? "bandcurl" : null,
+    triceps: (E) => has(E,"db") ? "triceps" : has(E,"dip") ? "dips" : has(E,"bands") ? "bandpushdown" : "benchdip",
+    cardio: (E) => has(E,"cardio") ? "bike" : "brisk",
+  };
+  const PER = {revlunge:"reps per leg", stepup:"reps per leg", splitsquat:"reps per leg", curtsy:"reps per leg", slbridge:"reps per leg",
+    dbrow:"reps per arm", deadbug:"reps per side", bandwalk:"steps each way", clam:"reps per side"};
+  /* [slot, main?, reps, unit override] ; the 6th entry is only used for long sessions */
+  const T = {
+    lowerA:{title:"Lower Body A",short:"Lower A",focus:"Quads and glutes",slots:[["squat",1,10],["hinge",1,10],["lunge",0,8],["bridge",0,12],["core1",0,10],["abductor",0,12]]},
+    upperA:{title:"Upper Body A",short:"Upper A",focus:"Chest, back, and shoulders",slots:[["hpush",1,10],["hpull",1,10],["vpush",1,10],["hpull2",0,[8,10]],["biceps",0,12],["core3",0,30]]},
+    lowerB:{title:"Lower Body B",short:"Lower B",focus:"Glutes and hamstrings",slots:[["thrust",1,10],["hinge",0,10],["stepup",0,10],["split",0,8],["core2",0,20],["abductor",0,12]]},
+    upperB:{title:"Upper Body B",short:"Upper B",focus:"Back, chest, and arms",slots:[["incline",1,10],["hpull",0,10],["lateral",0,12],["triceps",0,12],["cardio",0,0],["core1",0,10]]},
+    fullA:{title:"Full Body A",short:"Full A",focus:"Squat, push, and pull",slots:[["squat",1,10],["hpush",1,10],["hpull",1,10],["bridge",0,12],["core1",0,10],["lateral",0,12]]},
+    fullB:{title:"Full Body B",short:"Full B",focus:"Lunge, press, and hinge",slots:[["lunge",0,8],["vpush",1,10],["hpull2",0,[8,10]],["hinge",1,10],["core2",0,20],["biceps",0,12]]},
+    fullC:{title:"Full Body C",short:"Full C",focus:"Glutes, chest, and back",slots:[["thrust",1,10],["incline",0,10],["hpull",0,10],["split",0,8],["core3",0,30],["triceps",0,12]]},
+  };
+  const WEEK = {
+    2:{1:"fullA",2:"walk",3:"recovery",4:"fullB",5:"walk",6:"walk",0:"rest"},
+    3:{1:"fullA",2:"walk",3:"fullB",4:"recovery",5:"fullC",6:"walk",0:"rest"},
+    4:{1:"lowerA",2:"upperA",3:"recovery",4:"lowerB",5:"upperB",6:"walk",0:"rest"},
+    5:{1:"lowerA",2:"upperA",3:"fullC",4:"lowerB",5:"upperB",6:"walk",0:"rest"},
+  };
+  const EQUIP_LABEL = {db:"Dumbbells", bench:"A bench", rack:"Barbell and squat rack", bands:"Resistance bands", rings:"Rings or suspension straps",
+    pullup:"Pull-up bar", dip:"Dip bars", kb:"Kettlebell", cardio:"Bike or treadmill", gym:"A full gym", none:"No equipment (bodyweight)"};
+  const r5 = n => Math.round(n/5)*5, r50 = n => Math.round(n/50)*50;
+
+  function targets(p){
+    const kg = p.weightLb*0.4536, cm = p.heightIn*2.54;
+    const bmr = 10*kg + 6.25*cm - 5*p.age + (p.sex==="m" ? 5 : -161);
+    const factor = {sit:1.35, some:1.45, most:1.6, physical:1.75}[p.activity] || 1.4;
+    const maint = bmr*factor;
+    const careful = p.special && p.special !== "none";
+    let kcal = maint, note = "";
+    if (careful){ note = p.special==="under18" ? "Under 18: these targets keep you at maintenance. Talk with a parent or doctor before cutting calories."
+      : "Pregnant or breastfeeding: these targets are set at maintenance, not a deficit. Check your calories with your doctor or midwife."; }
+    else if (p.goal==="lose") kcal = Math.max(maint*0.83, p.sex==="m" ? 1600 : 1300);
+    else if (p.goal==="muscle") kcal = maint*1.05;
+    kcal = r50(kcal);
+    const perLb = p.goal==="muscle" || p.goal==="strength" ? 0.8 : 0.75;
+    const ref = p.goal==="lose" && +p.goalLb ? Math.min(p.weightLb, +p.goalLb + 20) : p.weightLb;
+    const protein = Math.min(200, Math.max(80, r5(ref*perLb)));
+    return {kcal, kcalMin:kcal-50, kcalMax:kcal+50, protein, proteinMin:protein-10, proteinMax:protein+10,
+      maintMin:r50(maint)-75, maintMax:r50(maint)+75, note,
+      pace: careful ? "Hold steady" : p.goal==="lose" ? "about 0.5–1 lb a week" : p.goal==="muscle" ? "about 0.25–0.5 lb a week up" : "Hold steady"};
+  }
+  function goalRange(p){
+    const minLb = Math.ceil(18.5 * Math.pow(p.heightIn*0.0254, 2) / 0.4536);
+    if (p.goal==="lose" && !(p.special && p.special!=="none")){
+      let g = +p.goalLb || Math.round(p.weightLb*0.9);
+      let note = "";
+      if (g < minLb){ g = minLb; note = `Your goal was set to ${minLb} lb, the low end of a healthy weight for your height.`; }
+      if (g >= p.weightLb) g = Math.round(p.weightLb*0.95);
+      return {goalMin: Math.round(g-2.5), goalMax: Math.round(g+2.5), goalNote: note};
+    }
+    return {goalMin: Math.round(p.weightLb-3), goalMax: Math.round(p.weightLb+3), goalNote: ""};
+  }
+  function program(p){
+    const E = new Set(p.equip && p.equip.length ? p.equip : ["none"]);
+    const L = p.level || "new", n = {short:4, mid:5, long:6}[p.time] || 5;
+    const week = WEEK[p.days] || WEEK[4];
+    const sessions = {}, lift = [], main = new Set();
+    Object.values(week).forEach(id => {
+      if (!T[id] || sessions[id]) return;
+      const t = T[id], used = new Set(), ex = [];
+      for (const [slot, isMain, reps] of t.slots){
+        if (ex.length >= n) break;
+        let x = PICK[slot](E, L);
+        if (x && used.has(x)) x = slot==="hpull2" ? (has(E,"bands") ? "bandpd" : "ytw") : null;
+        if (!x || used.has(x)) continue;
+        used.add(x);
+        const kind = (EX_MORE[x] || {}).kind || null;
+        if (slot === "cardio"){ ex.push({id:x, sets:1, mins:[10,15], unit:"minutes"}); continue; }
+        const sets = isMain ? (L==="new" ? [2,3] : L==="some" ? 3 : [3,4]) : (L==="regular" ? 3 : L==="some" ? [2,3] : 2);
+        const hold = ["core2","core3"].includes(slot);
+        ex.push({id:x, sets, reps, unit: hold ? (slot==="core2" ? "seconds per side" : "seconds") : (PER[x] || "reps")});
+        if (isMain) main.add(x);
+      }
+      const hasCardio = ex.some(e => e.unit==="minutes");
+      sessions[id] = {title: t.title + (id==="upperB" && hasCardio ? " + Conditioning" : ""), short:t.short,
+        focus: t.focus + (id==="upperB" && hasCardio ? ", plus cardio" : ""), type:"lift", ex};
+      lift.push(id);
+    });
+    const cardioWord = has(E,"cardio") ? "walking or biking" : "walking";
+    sessions.recovery = {title:"Active Recovery", short:"Recovery", focus:`20–30 minutes of easy ${cardioWord}`, type:"move", mins:[20,30]};
+    sessions.walk = {title:"Walking or Easy Cardio", short:"Walk", focus:`A 30–45 minute walk${has(E,"cardio") ? " or easy ride" : ""}`, type:"move", mins:[30,45]};
+    sessions.rest = {title:"Rest Day", short:"Rest", focus:"Rest or gentle stretching", type:"rest"};
+    return {sessions, schedule: {...week}, lift, main:[...main]};
+  }
+  const DIET_OK = {
+    all: d => true,
+    pesc: d => !d.meat,
+    veg: d => !d.meat && !d.fish,
+  };
+  function fits(item, p){
+    const f = item.flags || {};
+    if (!DIET_OK[p.diet || "all"](f)) return false;
+    return !(p.avoid||[]).some(a => f[a]);
+  }
+  function dinners(p, DINNERS){
+    const order = ["salmon","chicken","burgers","spaghetti","caesar","tofu","shrimp","tacos","dal"];
+    const ok = order.filter(id => DINNERS[id] && fits(DINNERS[id], p));
+    const pick = ok.length ? ok : order.filter(id => DINNERS[id]);
+    const days = ["mon","tue","wed","thu","fri"], out = {};
+    days.forEach((d,i) => out[d] = pick[i % pick.length]);
+    return out;
+  }
+  function generate(p, DINNERS){
+    const t = targets(p), g = goalRange(p), prog = program(p);
+    const mult = Math.min(1.75, Math.max(0.75, Math.round((t.kcal*0.33/590)*4)/4));
+    const goals = {lose:["Lose body fat","Keep the muscle you have","Build consistency"], muscle:["Build muscle","Get stronger","Build consistency"],
+      strength:["Get stronger","Build muscle","Build consistency"], health:["Move more","Feel better day to day","Build consistency"]}[p.goal] || [];
+    return {v:1, made:new Date().toISOString(), targets:t, start:Math.round(p.weightLb), goalMin:g.goalMin, goalMax:g.goalMax, goalNote:g.goalNote,
+      goals, equipment:(p.equip||["none"]).map(k => EQUIP_LABEL[k]).filter(Boolean), days:prog.lift.length,
+      sessions:prog.sessions, schedule:prog.schedule, lift:prog.lift, main:prog.main,
+      dinners: dinners(p, DINNERS), mult, diet:p.diet||"all", avoid:p.avoid||[]};
+  }
+  return {generate, targets, program, fits, EX_MORE, EQUIP_LABEL};
+})();
+/* /PLAN-GEN */
+Object.assign(EX, PGEN.EX_MORE);
+const NUMW = {1:"one",2:"two",3:"three",4:"four",5:"five",6:"six"};
+const BASE = {PLAN: JSON.parse(JSON.stringify(PLAN)), SESSIONS: JSON.parse(JSON.stringify(SESSIONS)), SCHEDULE: {...SCHEDULE},
+  LIFT: [...LIFT_SESSIONS], MAIN: [...MAIN_LIFTS], DINNER: {...DEFAULT_DINNER}};
+/* the starter plan is hers; answering the questions swaps in a generated one (S.custom) */
+function applyPlan(){
+  const c = typeof S !== "undefined" && S && S.custom;
+  if (c && c.sessions){
+    PLAN = {targets:c.targets, start:c.start, goalMin:c.goalMin, goalMax:c.goalMax, equipment:c.equipment, goals:c.goals};
+    SESSIONS = c.sessions; SCHEDULE = c.schedule; LIFT_SESSIONS = c.lift; MAIN_LIFTS = c.main; DEFAULT_DINNER = c.dinners;
+  } else {
+    PLAN = JSON.parse(JSON.stringify(BASE.PLAN)); SESSIONS = JSON.parse(JSON.stringify(BASE.SESSIONS)); SCHEDULE = {...BASE.SCHEDULE};
+    LIFT_SESSIONS = [...BASE.LIFT]; MAIN_LIFTS = [...BASE.MAIN]; DEFAULT_DINNER = {...BASE.DINNER};
+  }
+  PHASES[0].items[1] = `Completing ${NUMW[LIFT_SESSIONS.length]||LIFT_SESSIONS.length} weekly workouts`;
+}
+const myMult = () => (typeof S !== "undefined" && S.custom && S.custom.mult) || 1;
+const losing = () => PLAN.start - PLAN.goalMax >= 3;
+function timeline(){
+  if (!losing()) return "";
+  const lo = Math.max(1, Math.round((PLAN.start-PLAN.goalMax)/1/4.33)), hi = Math.max(lo+1, Math.round((PLAN.start-PLAN.goalMin)/0.5/4.33));
+  return `about ${lo}–${hi} months`;
+}
+function goalSentence(){
+  const n = LIFT_SESSIONS.length;
+  return losing() ? `Starting at ${PLAN.start} lb, aiming for ${PLAN.goalMin}–${PLAN.goalMax} lb (about ${PLAN.start-PLAN.goalMax}–${PLAN.start-PLAN.goalMin} lb), with ${NUMW[n]} workouts a week.`
+    : `Starting at ${PLAN.start} lb and holding around ${PLAN.goalMin}–${PLAN.goalMax} lb, with ${NUMW[n]} workouts a week.`;
+}
+function sessionMins(){ return ({short:"20–30",mid:"35–50",long:"45–60"})[(S.profile||{}).time] || "35–50"; }
+const DOW_ORDER = [[1,"Mon","Monday"],[2,"Tue","Tuesday"],[3,"Wed","Wednesday"],[4,"Thu","Thursday"],[5,"Fri","Friday"],[6,"Sat","Saturday"],[0,"Sun","Sunday"]];
+function schedRows(){
+  return DOW_ORDER.map(([k,ab])=>{ const id = SCHEDULE[k], ss = SESSIONS[id] || {};
+    return [ab, ss.type==="lift" ? ss.title : ss.type==="move" ? `${ss.title}: ${ss.focus.charAt(0).toLowerCase()}${ss.focus.slice(1)}` : "Rest or gentle stretching"]; });
+}
+function liftDayName(sid){ const d = DOW_ORDER.find(([k])=>SCHEDULE[k]===sid); return d ? d[2] : ""; }
+function fitsMe(item){ return !S.profile || PGEN.fits(item, S.profile); }
 /* ===================== STATE ===================== */
 const KEY = "yourplan.v1";
 const pad = n => String(n).padStart(2,"0");
@@ -697,6 +1002,7 @@ function load(){
   const f = fresh(); try{ localStorage.setItem(KEY, JSON.stringify(f)); }catch(e){} return f;
 }
 let S = load();
+applyPlan();
 let saveOk = true;
 function save(){
   try { localStorage.setItem(KEY, JSON.stringify(S)); saveOk = true; }
@@ -721,7 +1027,7 @@ function stable(v){
   return JSON.stringify(v === undefined ? null : v);
 }
 const MONTH_KINDS = ["workouts","moves","meals"];
-const CORE_KEYS = ["v","created","settings","favorites","weighins","waist","swaps","grocery","recipes"];
+const CORE_KEYS = ["v","created","settings","favorites","weighins","waist","swaps","grocery","recipes","profile","custom"];
 function docsOf(st){
   const out = {core:{}};
   CORE_KEYS.forEach(k=>{ if (st[k]!==undefined) out.core[k] = st[k]; });
@@ -734,7 +1040,7 @@ function docsOf(st){
 }
 const emptyDoc = id => id === "core" ? null : {workouts:{},moves:{},meals:{}};
 function applyDoc(id, body){
-  if (id === "core"){ CORE_KEYS.forEach(k=>{ if (body[k]!==undefined) S[k] = body[k]; }); S = migrate(S); return; }
+  if (id === "core"){ CORE_KEYS.forEach(k=>{ if (body[k]!==undefined) S[k] = body[k]; }); S = migrate(S); applyPlan(); return; }
   const pre = id.slice(2);
   MONTH_KINDS.forEach(k=>{
     S[k] = S[k] || {};
@@ -872,7 +1178,7 @@ function setsFor(ex, wk){ return Array.isArray(ex.sets) ? (wk<=2 ? ex.sets[0] : 
 function topReps(ex){ return Array.isArray(ex.reps) ? ex.reps[1] : ex.reps; }
 function repsLabel(ex){ return Array.isArray(ex.reps) ? `${ex.reps[0]}–${ex.reps[1]}` : ex.reps; }
 function exName(ex){ return ex.name || EX[ex.id].name; }
-function sessionFor(date){ const w = S.workouts[date]; return (w && w.session) || SCHEDULE[dow(date)]; }
+function sessionFor(date){ const w = S.workouts[date], id = w && w.session; return id && SESSIONS[id] ? id : SCHEDULE[dow(date)]; } /* logs from an older plan fall back to today's scheduled workout */
 function dinnerFor(day){ return DINNERS[S.swaps[day]] || DINNERS[DEFAULT_DINNER[day]]; }
 function mealsOn(date){ return S.meals[date] || []; }
 function totalsOn(date){ return mealsOn(date).reduce((a,m)=>({kcal:a.kcal+(+m.kcal||0),protein:a.protein+(+m.protein||0)}),{kcal:0,protein:0}); }
@@ -1005,7 +1311,7 @@ function weekStrip(date){
       ? `<button class="${cls}" data-act="pick-session" data-s="${k}" aria-label="${SESSIONS[k].title} was missed. Do it today">${inner}</button>`
       : `<div class="${cls}" title="${fmt(d,{weekday:"long"})}: ${SESSIONS[k].title}${done?" (done)":""}">${inner}</div>`;
   }).join("");
-  return `<div class="card"><div class="row between"><div class="eyebrow">This week</div><div class="small muted"><b style="color:var(--ink)">${Math.min(4,doneSet.size)}</b> of 4 workouts${vidN?` · ${vidN} video${vidN>1?"s":""}`:""}</div></div>
+  return `<div class="card"><div class="row between"><div class="eyebrow">This week</div><div class="small muted"><b style="color:var(--ink)">${Math.min(LIFT_SESSIONS.length,doneSet.size)}</b> of ${LIFT_SESSIONS.length} workouts${vidN?` · ${vidN} video${vidN>1?"s":""}`:""}</div></div>
     <div class="week">${cells}</div>${missed?`<p class="tiny muted" style="margin:8px 0 0">Missed one? Tap it to do it today.</p>`:""}</div>`;
 }
 function renderToday(){
@@ -1020,6 +1326,7 @@ function renderToday(){
       <button class="lnk" data-act="page" data-page="settings" aria-label="Program week, change start date">${notStarted?`Starts ${fmtShort(S.settings.startDate)}`:`Week ${wk}${ph?` · ${ph.title.charAt(0)}${ph.title.slice(1).toLowerCase()}`:" · Keep building"}`}</button>
       <button class="lnk" data-act="switch-session">Switch workout</button>
     </div></section>`;
+  h += encourageCard();
   h += weekStrip(date);
   h += targetsStrip(date);
   if (sess.type==="lift") h += renderLift(date, sid, sess, wk, log);
@@ -1031,7 +1338,7 @@ function renderToday(){
   h += `<h2>Next steps</h2><div class="card">
     <div class="row between"><div class="grow"><div class="eyebrow">Tonight's dinner</div>
     <div style="font-weight:700;margin-top:2px">${din?esc(din.name):"Leftovers, a family meal or a favorite"}</div>
-    <div class="muted small">${din?`${din.kcal} kcal · ${din.protein} g protein`:"Keep portions reasonable and protein in mind"}</div></div>
+    <div class="muted small">${din?`${comma(din.kcal*myMult())} kcal · ${Math.round(din.protein*myMult())} g protein`:"Keep portions reasonable and protein in mind"}</div></div>
     <button class="btn sm" data-act="tab" data-tab="meals">View</button></div></div>
     <div class="card"><div class="eyebrow">Daily movement</div><div style="font-weight:700;margin-top:2px">About 6,000 steps</div>
     <div class="muted small">A good starting point. Build up gradually toward about 150 minutes of moderate activity a week.</div></div>`;
@@ -1069,7 +1376,7 @@ function renderExercise(date, ex, i, wk, log, isCur){
   if ((kind==="lift"||kind==="bw") && readyToIncrease(ex.id, ex, date)){
     h += kind==="lift"
       ? `<div class="ready"><b>Ready to go up.</b> You hit every rep two sessions in a row. ${sw?`Try <b>${sw} lb</b> today`:"Go up by your smallest step"}, as long as your form stays good.</div>`
-      : `<div class="ready"><b>Ready for a little more.</b> You hit every rep two sessions in a row. Walk your feet slightly forward to make it harder.</div>`;
+      : `<div class="ready"><b>Ready for a little more.</b> You hit every rep two sessions in a row. ${esc((EX[ex.id]||{}).harder || "Walk your feet slightly forward to make it harder.")}</div>`;
   }
   const nw = kind!=="lift";
   const rl = kind==="hold" ? "Seconds" : kind==="cardio" ? "Minutes" : "Reps";
@@ -1427,7 +1734,7 @@ function renderMeals(){
   WEEKDAYS.forEach(d=>{
     const m = dinnerFor(d), isSwap = S.swaps[d] && S.swaps[d]!==DEFAULT_DINNER[d];
     h += `<details class="meal"${d===tk?" open":""}><summary><div class="day${d===tk?" today":""}">${d}</div>
-      <div class="grow"><div class="meal-t">${esc(m.name)}</div><div class="meal-m">${m.kcal} kcal · ${m.protein} g protein · 1 serving${isSwap?" · swapped":""}</div></div></summary>
+      <div class="grow"><div class="meal-t">${esc(m.name)}</div><div class="meal-m">${myMult()!==1?`Your portion: ${frac(myMult())} servings · about ${comma(m.kcal*myMult())} kcal · ${Math.round(m.protein*myMult())} g protein`:`${m.kcal} kcal · ${m.protein} g protein · 1 serving`}${isSwap?" · swapped":""}</div></div></summary>
       <div class="meal-body">
         <h4>Per serving</h4><ul class="clean">${m.ing.map(i=>`<li>${esc(i.t)}</li>`).join("")}</ul>
         <h4>How to make it</h4><ol>${m.steps.map(x=>`<li>${esc(x)}</li>`).join("")}</ol>
@@ -1442,7 +1749,8 @@ function renderMeals(){
   h += renderRecipes();
   h += `<h2>Breakfast, lunch & snacks</h2><p class="muted small" style="margin:-4px 2px 6px">Mix and match these to stay reasonably close to 1,750 calories and 120 g protein.</p>`;
   [["Breakfast","breakfast"],["Lunch","lunch"],["Snacks","snack"]].forEach(([lab,k])=>{
-    OPTIONS[k].forEach((o,i)=>{
+    const fitOpts = OPTIONS[k].filter(fitsMe), list = fitOpts.length ? fitOpts : OPTIONS[k];
+    list.forEach((o,i)=>{
       h += `<div class="card"><div class="row between"><div class="grow"><div class="eyebrow">${lab} · option ${i+1}</div><div style="font-weight:700;margin-top:2px">${esc(o.name)}</div>
         <div class="muted small">${o.kcal} kcal · ${o.protein} g protein</div></div></div>
         <ul class="clean small">${o.items.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>`;
@@ -1498,7 +1806,7 @@ function rcpSheet(){
 }
 function swapSheet(day){
   const cur = dinnerFor(day).id;
-  openSheet(`<h3>${DAYNAME[day]}'s dinner</h3>${DINNER_ORDER.map(id=>{const m=DINNERS[id];return `<button class="opt" data-act="pick-swap" data-day="${day}" data-id="${id}"><div class="grow"><div class="nm">${esc(m.name)}</div><div class="mc">${m.kcal} kcal · ${m.protein} g protein · usually ${DAYNAME[m.day]}</div></div>${id===cur?'<span class="tag">Current</span>':""}</button>`}).join("")}`);
+  openSheet(`<h3>${DAYNAME[day]}'s dinner</h3>${DINNER_ORDER.filter(id=>id===cur||fitsMe(DINNERS[id])).map(id=>{const m=DINNERS[id];return `<button class="opt" data-act="pick-swap" data-day="${day}" data-id="${id}"><div class="grow"><div class="nm">${esc(m.name)}</div><div class="mc">${m.kcal} kcal · ${m.protein} g protein${m.day&&!S.custom?` · usually ${DAYNAME[m.day]}`:""}</div></div>${id===cur?'<span class="tag">Current</span>':""}</button>`}).join("")}`);
 }
 
 /* ===================== NUTRITION ===================== */
@@ -1583,9 +1891,9 @@ function weightChart(){
   for (let v=Math.ceil(lo/step)*step; v<=hi; v+=step) s += `<line x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)" stroke-width="1"/><text x="${L-6}" y="${y(v)+3.5}" text-anchor="end">${v}</text>`;
   if (!zoom){
     s += `<rect x="${L}" width="${W-L-R}" y="${y(PLAN.goalMax)}" height="${y(PLAN.goalMin)-y(PLAN.goalMax)}" fill="var(--band)"/>`;
-    s += `<text x="${W-R-4}" y="${y(PLAN.goalMax)+11}" text-anchor="end" style="fill:var(--accent);font-weight:600">Goal 140–145</text>`;
+    s += `<text x="${W-R-4}" y="${y(PLAN.goalMax)+11}" text-anchor="end" style="fill:var(--accent);font-weight:600">Goal ${PLAN.goalMin}–${PLAN.goalMax}</text>`;
   } else {
-    s += `<rect x="${L}" width="${W-L-R}" y="${H-B-6}" height="6" fill="var(--band)"/><text x="${W-R-4}" y="${H-B-10}" text-anchor="end" style="fill:var(--accent);font-weight:600">Goal 140–145 is below ↓</text>`;
+    s += `<rect x="${L}" width="${W-L-R}" y="${H-B-6}" height="6" fill="var(--band)"/><text x="${W-R-4}" y="${H-B-10}" text-anchor="end" style="fill:var(--accent);font-weight:600">Goal ${PLAN.goalMin}–${PLAN.goalMax} is below ↓</text>`;
   }
   if (PLAN.start<=hi) s += `<line x1="${L}" x2="${W-R}" y1="${y(PLAN.start)}" y2="${y(PLAN.start)}" stroke="var(--muted)" stroke-dasharray="3 4" stroke-width="1"/><text x="${L+4}" y="${y(PLAN.start)-4}">Start 165</text>`;
   E.forEach(e=>{ s += `<circle cx="${x(e.date)}" cy="${y(e.lb)}" r="3" fill="var(--accent-2)" opacity=".6"/>`; });
@@ -1613,7 +1921,7 @@ function renderProgress(){
   const wkLabel = latestWk && latestWk.week!==mondayOf(today()) ? `Week of ${fmtShort(latestWk.week)}` : "This week";
   h += `<div class="card"><div class="trend">
     <div class="trend-n">${cur!=null?r1(cur):"No data"}${cur!=null?`<span> lb</span>`:""}</div>
-    <div class="trend-l">${cur!=null?`${wkLabel}'s average. ${lost>=0?"Down":"Up"} ${r1(Math.abs(lost))} lb from ${PLAN.start}, ${toGoal>0?`${r1(toGoal)} lb to the 140–145 goal.`:"inside the 140–145 goal."}`:`Log a weigh-in below. Start ${PLAN.start} lb, goal 140–145.`}</div>
+    <div class="trend-l">${cur!=null?`${wkLabel}'s average. ${lost>=0?"Down":"Up"} ${r1(Math.abs(lost))} lb from ${PLAN.start}, ${toGoal>0?`${r1(toGoal)} lb to the ${PLAN.goalMin}–${PLAN.goalMax} goal.`:`inside the ${PLAN.goalMin}–${PLAN.goalMax} goal.`}`:`Log a weigh-in below. Start ${PLAN.start} lb, goal ${PLAN.goalMin}–${PLAN.goalMax}.`}</div>
     </div><div style="margin-top:12px">${weightChart()}</div></div>`;
   /* contextual notes */
   if (stallCheck(weeks)){
@@ -1723,7 +2031,7 @@ const PACKS = {
 };
 function storeHint(it){ const f = PACKS[it.n]; try { return f ? f(it.units) : ""; } catch(e){ return ""; } }
 function groceryList(){
-  const G = S.grocery, Hh = G.household, items = {};
+  const G = S.grocery, Hh = G.household + (myMult()-1), items = {};
   const add = (g, mult, src) => {
     const it = items[g.n] || (items[g.n] = {n:g.n, c:g.c, f:g.f, units:{}, src:[]});
     it.units[g.u] = (it.units[g.u]||0) + g.q*mult;
@@ -1771,17 +2079,17 @@ const SCHED_ROWS = [["Mon","Lower Body A"],["Tue","Upper Body A"],["Wed","Active
 function renderPlan(){
   const wk = programWeek(today()), T = PLAN.targets;
   let h = `<button class="back" data-act="back">${ICON.left} Back</button>
-  <section class="hero"><h2>How this works</h2><div class="focus">1,750 kcal and 120 g of protein a day, four workouts a week, for 12 weeks.</div></section>
+  <section class="hero"><h2>How this works</h2><div class="focus">${comma(T.kcal)} kcal and ${T.protein} g of protein a day, ${NUMW[LIFT_SESSIONS.length]} workouts a week, for 12 weeks.</div></section>
   <div class="card"><h3>Nutrition targets</h3><table class="t">
     <tr><td>Calories</td><td class="r"><b>${comma(T.kcal)}</b>/day <span class="muted small">(${comma(T.kcalMin)}–${comma(T.kcalMax)})</span></td></tr>
     <tr><td>Protein</td><td class="r"><b>${T.protein} g</b>/day <span class="muted small">(${T.proteinMin}–${T.proteinMax} g)</span></td></tr>
     <tr><td>Est. maintenance</td><td class="r">${comma(T.maintMin)}–${comma(T.maintMax)} kcal</td></tr>
-    <tr><td>Expected pace</td><td class="r">~0.5–1 lb/week</td></tr>
-    <tr><td>Timeline to 140–145</td><td class="r">~5–12 months</td></tr></table>
+    <tr><td>Expected pace</td><td class="r">${esc(T.pace||"about 0.5–1 lb a week")}</td></tr>
+    ${timeline()?`<tr><td>Timeline to ${PLAN.goalMin}–${PLAN.goalMax}</td><td class="r">${timeline()}</td></tr>`:""}</table>
     <p class="muted small" style="margin:10px 0 0">These are starting estimates. Adjust them based on your actual results, energy, hunger and activity.</p></div>
-  <div class="card warn small"><b>Important:</b> These calorie estimates assume you're not pregnant or breastfeeding. If you're breastfeeding, your nutrition needs must be recalculated.</div>
-  <h2>Weekly schedule</h2><div class="card"><div class="sched">${SCHED_ROWS.map(r=>`<b>${r[0]}</b><span>${r[1]}</span>`).join("")}</div>
-    <p class="muted small" style="margin:12px 0 0">Workouts take about 35–50 minutes.</p></div>
+  <div class="card warn small"><b>Important:</b> ${T.note ? esc(T.note) : "These calorie estimates assume you're not pregnant or breastfeeding. If you're breastfeeding, your nutrition needs must be recalculated."}${S.custom && S.custom.goalNote ? ` ${esc(S.custom.goalNote)}` : ""}</div>
+  <h2>Weekly schedule</h2><div class="card"><div class="sched">${schedRows().map(r=>`<b>${r[0]}</b><span>${esc(r[1])}</span>`).join("")}</div>
+    <p class="muted small" style="margin:12px 0 0">Workouts take about ${sessionMins()} minutes.</p></div>
   <h2>Training guidelines</h2>
   <div class="card"><h3>Weeks 1–2</h3><ul class="clean small"><li>Two sets for each lifting exercise.</li><li>Focus on good form and getting comfortable with the movements.</li><li>Use lighter weights while learning.</li><li>End each set when you could do about 2–3 more good reps.</li><li>Rest about 60–120 seconds between sets.</li></ul>
     <h3 style="margin-top:12px">Weeks 3–4</h3><ul class="clean small"><li>The main exercises go up to three sets. The app does this for you.</li><li>Start adding reps or weight as exercises get easier.</li></ul></div>
@@ -1794,8 +2102,8 @@ function renderPlan(){
   <h2>Cardio & daily movement</h2><div class="card small"><ul class="clean"><li>Start with about <b>6,000 steps</b> a day if that suits your current activity.</li><li>Gradually increase daily movement over time.</li><li>Longer-term goal: about <b>150 minutes</b> of moderate activity a week.</li><li>Cardio supports fitness and overall health. It isn't a way to make up for eating.</li></ul></div>
   <h2>Tracking your weight</h2><div class="card small"><ul class="clean"><li>Weigh in about 3–4 mornings a week under similar conditions.</li><li>Compare weekly averages, not single days.</li><li>Your cycle can cause temporary water retention.</li><li>No drop in your average after 3–4 consistent weeks? Cut about 100–150 calories a day or add walking.</li><li>Poor energy, excessive hunger or very fast loss? Eat more and reassess.</li><li>Track strength and measurements alongside weight.</li></ul></div>
   <h2>Your goals</h2><div class="card small"><ol style="margin:0;padding-left:20px">${PLAN.goals.map(g=>`<li>${g}</li>`).join("")}</ol>
-    <p class="muted" style="margin:10px 0 0">Starting at 165 lb, aiming for 140–145 lb (about 20–25 lb), with four workouts a week.</p></div>
-  <details class="meal"><summary><div class="grow"><div class="meal-t">Home gym equipment</div><div class="meal-m">${PLAN.equipment.length} items</div></div></summary><div class="meal-body"><ul class="clean small">${PLAN.equipment.map(e=>`<li>${e}</li>`).join("")}</ul></div></details>
+    <p class="muted" style="margin:10px 0 0">${goalSentence()}</p></div>
+  <details class="meal"><summary><div class="grow"><div class="meal-t">Your equipment</div><div class="meal-m">${PLAN.equipment.length} items</div></div></summary><div class="meal-body"><ul class="clean small">${PLAN.equipment.map(e=>`<li>${e}</li>`).join("")}</ul></div></details>
   <h2>The philosophy</h2><div class="card soft small">
     <p style="margin-top:0">The goal is to make fitness sustainable. You can eat normal family meals, get progressively stronger, lose body fat and build healthy habits.</p>
     <p>No need to avoid carbs, give up favorite foods, do excessive cardio or follow an extreme diet.</p>
@@ -1815,6 +2123,13 @@ function renderSettings(){
     <label class="field"><span>Program start date</span><input type="date" data-in="start" value="${esc(st.startDate)}"></label>
     <p class="muted tiny" style="margin:-2px 0 0">Today is week ${programWeek(today())}. Weeks run Monday to Sunday. Weeks 1–2 use 2 sets, and the main lifts move to 3 sets from week 3.</p>
   </div>
+  <div class="card"><h3>Your plan</h3><p class="muted small" style="margin:0 0 10px">${S.custom ? `Built from your answers: ${S.custom.days} workouts a week, ${comma(PLAN.targets.kcal)} kcal and ${PLAN.targets.protein} g protein a day.` : "This is the starter plan. Answer a few questions to fit it to your goal, schedule, equipment and food."}</p>
+    <button class="btn block${S.custom?"":" primary"}" data-act="onb-open">${S.custom?"Retake the questions":"Personalize my plan"}</button>
+    ${S.custom?`<button class="btn ghost block" style="margin-top:8px" data-act="plan-reset">Go back to the starter plan</button>`:""}</div>
+  <div class="card"><h3>Daily encouragement</h3><div class="toggle">${[["verse","Bible verse"],["note","Encouraging note"],["none","Off"]].map(([v,l])=>`<button class="${(st.encourage||"none")===v?"on":""}" data-act="encourage" data-v="${v}">${l}</button>`).join("")}</div></div>
+  <div class="card"><h3>Workout reminders</h3><p class="muted small" style="margin:0 0 6px">Adds your workout days to your phone's calendar with an alert at this time, for the next 12 weeks.</p>
+    <label class="field"><span>Reminder time</span><input type="time" data-in="remindTime" value="${esc(st.remindTime||"06:30")}"></label>
+    <button class="btn block" data-act="ics">Add to my calendar</button></div>
   <div class="card"><h3>Rest timer</h3><div class="toggle">${[60,90,120].map(s=>`<button class="${st.restDefault===s?"on":""}" data-act="rest-default" data-s="${s}">${s} s</button>`).join("")}</div>
     <label class="row small" style="margin-top:12px;min-height:40px"><input type="checkbox" data-in="autoRest" ${st.autoRest?"checked":""} style="width:22px;height:22px"> Start the timer automatically when you check off a set</label></div>
   <div class="card"><h3>Weight buttons</h3><p class="muted small" style="margin:0 0 10px">How much the + and − buttons change the weight. Match the smallest jump on your dumbbells.</p>
@@ -1831,16 +2146,16 @@ function renderSettings(){
 /* ===================== PRINT ===================== */
 function buildPrint(){
   const T = PLAN.targets;
-  const exTable = sid => { const s = SESSIONS[sid]; return `<div class="box"><h3>${({lowerA:"Monday",upperA:"Tuesday",lowerB:"Thursday",upperB:"Friday"})[sid]}: ${s.title}</h3><div class="sub">Focus: ${s.focus}</div>
+  const exTable = sid => { const s = SESSIONS[sid]; return `<div class="box"><h3>${liftDayName(sid)}: ${s.title}</h3><div class="sub">Focus: ${s.focus}</div>
     <table><tr><th style="width:34%">Exercise</th><th style="width:20%">Sets × reps</th><th>Form cues</th></tr>${s.ex.map(e=>`<tr><td><b>${esc(exName(e))}</b></td><td>${e.mins?`${e.mins[0]}–${e.mins[1]} min, easy–moderate`:`${Array.isArray(e.sets)?e.sets.join("–"):e.sets} × ${repsLabel(e)} ${e.unit.replace("seconds","sec")}`}</td><td>${esc(EX[e.id].cue)}</td></tr>`).join("")}</table></div>`; };
-  return `<h1>Your Fitness &amp; Nutrition Plan</h1><div class="sub">165 lb → 140–145 lb · 4 strength workouts a week · 35–50 min each · Reference copy (the app is the day-to-day tool)</div>
+  return `<h1>Your Fitness &amp; Nutrition Plan</h1><div class="sub">${PLAN.start} lb → ${PLAN.goalMin}–${PLAN.goalMax} lb · ${LIFT_SESSIONS.length} strength workouts a week · ${sessionMins()} min each · Reference copy (the app is the day-to-day tool)</div>
   <h2>Targets</h2><div class="two"><table>
     <tr><th>Calories</th><td><b>${comma(T.kcal)}</b>/day (range ${comma(T.kcalMin)}–${comma(T.kcalMax)})</td></tr>
     <tr><th>Protein</th><td><b>${T.protein} g</b>/day (range ${T.proteinMin}–${T.proteinMax} g)</td></tr>
     <tr><th>Maintenance (est.)</th><td>${comma(T.maintMin)}–${comma(T.maintMax)} kcal</td></tr></table>
-    <table><tr><th>Expected pace</th><td>~0.5–1 lb/week</td></tr><tr><th>Timeline</th><td>~5–12 months to 140–145 lb</td></tr><tr><th>Steps</th><td>~6,000/day to start → 150 min/week moderate activity</td></tr></table></div>
+    <table><tr><th>Expected pace</th><td>${esc(T.pace||"about 0.5–1 lb a week")}</td></tr>${timeline()?`<tr><th>Timeline</th><td>${timeline()} to ${PLAN.goalMin}–${PLAN.goalMax} lb</td></tr>`:""}<tr><th>Steps</th><td>~6,000/day to start → 150 min/week moderate activity</td></tr></table></div>
   <p class="note">Starting estimates. Adjust them based on actual results, energy, hunger and activity. <b>These estimates assume you're not pregnant or breastfeeding. If breastfeeding, nutrition needs must be recalculated.</b></p>
-  <h2>Weekly schedule</h2><table>${SCHED_ROWS.map(r=>`<tr><th style="width:12%">${r[0]}</th><td>${r[1]}</td></tr>`).join("")}</table>
+  <h2>Weekly schedule</h2><table>${schedRows().map(r=>`<tr><th style="width:12%">${r[0]}</th><td>${esc(r[1])}</td></tr>`).join("")}</table>
   <h2>Training guidelines</h2><div class="two"><div><h3>Weeks 1–2</h3><ul><li>Two sets for each lifting exercise; lighter weights while learning.</li><li>Focus on form and comfort with the movements.</li><li>End each set with ~2–3 good reps left.</li><li>Rest ~60–120 seconds between sets.</li></ul>
     <h3>Weeks 3–4</h3><ul><li>Main exercises (marked 2–3 sets) go to three sets.</li><li>Start adding reps or weight as exercises get easier.</li></ul></div>
     <div><h3>Progressive overload</h3><p>Complete every prescribed rep with good form for <b>two consecutive sessions</b>, then increase by the smallest available increment.</p><p class="note">Example: Wk 1 goblet squat 15 lb × 10 · Wk 2 15 lb × 10 · Wk 3 20 lb × 10 if ready. These are examples, not required starting weights.</p><p>Use squat-rack safety bars for barbell exercises. Don't attempt heavy lifts without safety precautions.</p></div></div>
@@ -1942,6 +2257,20 @@ document.addEventListener("click", e=>{
       $("#vidName").value = v.n||""; $("#vidName").dataset.auto = "0"; $("#vidMin").value = v.m||""; $("#vidMin").dataset.auto = "0";
       capPreview(); $("#sheet").scrollTop = 0; break;
     }
+    case "onb-open": openOnb(); break;
+    case "onb-close": closeOnb(); break;
+    case "onb-next": { const steps = onbVisible(); if (steps[ONB.i].ok(ONB.a)){ ONB.i = Math.min(ONB.i+1, steps.length-1); onbRender(); } break; }
+    case "onb-back": ONB.i = Math.max(0, ONB.i-1); onbRender(); break;
+    case "onb-pick": { const k = el.dataset.k, v = el.dataset.v; ONB.a[k] = k==="days" ? +v : v; onbRender(); break; }
+    case "onb-tog": { const k = el.dataset.k, v = el.dataset.v; let arr = new Set(ONB.a[k]||[]);
+      if (arr.has(v)) arr.delete(v); else { if (k==="equip" && v==="none") arr = new Set(); if (k==="equip" && v!=="none") arr.delete("none"); arr.add(v); }
+      ONB.a[k] = [...arr]; onbRender(); break; }
+    case "onb-house": ONB.a.household = Math.max(1, Math.min(10, (ONB.a.household||1) + (+el.dataset.d))); onbRender(); break;
+    case "onb-start": startPlan(); break;
+    case "onb-ics": addReminders(ONB.a.remind); break;
+    case "ics": addReminders(S.settings.remindTime||"06:30"); break;
+    case "encourage": S.settings.encourage = el.dataset.v; save(); render(true); break;
+    case "plan-reset": S.custom = null; S.profile = null; applyPlan(); save(); render(true); toast("Back to the starter plan"); break;
     case "rcp-add": rcpSheet(); break;
     case "rcp-paste": case "rcp-cap-paste": (async()=>{
       try {
@@ -1998,7 +2327,7 @@ document.addEventListener("click", e=>{
     case "reset-swaps": S.swaps = {}; save(); render(true); break;
     case "log-dinner": { const m = DINNERS[el.dataset.id]; UI.nutDate = today();
       if (mealsOn(today()).some(x=>x.slot==="dinner" && x.name===m.name)){ toast("Already in today's log. Add a second serving from Nutrition."); break; }
-      addMeal("dinner", m.name, m.kcal, m.protein); toast(`Logged ${m.name}`); break; }
+      addMeal("dinner", m.name, Math.round(m.kcal*myMult()), Math.round(m.protein*myMult())); toast(`Logged ${m.name}`); break; }
     case "nut-day": { const nd = addDays(UI.nutDate||today(), +el.dataset.d); UI.nutDate = nd > today() ? today() : nd; render(); break; }
     case "add-meal": addMealSheet(el.dataset.slot); break;
     case "quick-add": addMeal(el.dataset.slot, el.dataset.name, el.dataset.kcal, el.dataset.p); closeSheet(); render(true); toast(`Added ${el.dataset.name}`); break;
@@ -2055,6 +2384,8 @@ document.addEventListener("input", e=>{
   } else if (f==="move-min"){ (S.moves[date] = S.moves[date]||{}).min = el.value.trim(); save(); }
   else if (f==="vidcap"){ capPreview(); }
   else if (f==="rcpcap"){ rcpPreview(); }
+  else if (f==="onb"){ ONB.a[el.dataset.k] = el.value.trim(); onbOk(); }
+  else if (f==="remindTime"){ S.settings.remindTime = el.value; save(); }
   else if (f==="rcpfield"){ el.dataset.auto = el.value.trim() ? "0" : "1"; }
   else if (f==="vidname"||f==="vidmin"){ el.dataset.auto = el.value.trim() ? "0" : "1"; }
   else if (f==="name"){ S.settings.name = el.value.trim().slice(0,40); save(); $("#greet").textContent = greeting(); }
@@ -2110,6 +2441,164 @@ document.addEventListener("submit", e=>{
   }
 });
 document.addEventListener("keydown", e=>{ if (e.key==="Escape") closeSheet(); });
+
+/* ===================== ONBOARDING ===================== */
+const VERSES = [
+  ["She girdeth her loins with strength, and strengtheneth her arms.","Proverbs 31:17"],
+  ["I can do all things through Christ which strengtheneth me.","Philippians 4:13"],
+  ["But they that wait upon the LORD shall renew their strength; they shall mount up with wings as eagles; they shall run, and not be weary; and they shall walk, and not faint.","Isaiah 40:31"],
+  ["Strength and honour are her clothing; and she shall rejoice in time to come.","Proverbs 31:25"],
+  ["And let us not be weary in well doing: for in due season we shall reap, if we faint not.","Galatians 6:9"],
+  ["I will praise thee; for I am fearfully and wonderfully made: marvellous are thy works; and that my soul knoweth right well.","Psalm 139:14"],
+  ["Have not I commanded thee? Be strong and of a good courage; be not afraid, neither be thou dismayed: for the LORD thy God is with thee whithersoever thou goest.","Joshua 1:9"],
+  ["This is the day which the LORD hath made; we will rejoice and be glad in it.","Psalm 118:24"],
+  ["For God hath not given us the spirit of fear; but of power, and of love, and of a sound mind.","2 Timothy 1:7"],
+  ["He giveth power to the faint; and to them that have no might he increaseth strength.","Isaiah 40:29"],
+  ["Fear thou not; for I am with thee: be not dismayed; for I am thy God: I will strengthen thee; yea, I will help thee; yea, I will uphold thee with the right hand of my righteousness.","Isaiah 41:10"],
+  ["God is our refuge and strength, a very present help in trouble.","Psalm 46:1"],
+  ["It is of the LORD's mercies that we are not consumed, because his compassions fail not. They are new every morning: great is thy faithfulness.","Lamentations 3:22–23"],
+  ["Come unto me, all ye that labour and are heavy laden, and I will give you rest.","Matthew 11:28"],
+  ["And whatsoever ye do, do it heartily, as to the Lord, and not unto men;","Colossians 3:23"],
+  ["Being confident of this very thing, that he which hath begun a good work in you will perform it until the day of Jesus Christ:","Philippians 1:6"],
+  ["Commit thy works unto the LORD, and thy thoughts shall be established.","Proverbs 16:3"],
+  ["The LORD is my strength and my shield; my heart trusted in him, and I am helped: therefore my heart greatly rejoiceth; and with my song will I praise him.","Psalm 28:7"],
+  ["My flesh and my heart faileth: but God is the strength of my heart, and my portion for ever.","Psalm 73:26"],
+  ["My grace is sufficient for thee: for my strength is made perfect in weakness.","2 Corinthians 12:9"],
+  ["Trust in the LORD with all thine heart; and lean not unto thine own understanding. In all thy ways acknowledge him, and he shall direct thy paths.","Proverbs 3:5–6"],
+  ["The LORD is my light and my salvation; whom shall I fear? the LORD is the strength of my life; of whom shall I be afraid?","Psalm 27:1"],
+  ["Whether therefore ye eat, or drink, or whatsoever ye do, do all to the glory of God.","1 Corinthians 10:31"],
+  ["It is God that girdeth me with strength, and maketh my way perfect.","Psalm 18:32"],
+  ["The LORD God is my strength, and he will make my feet like hinds' feet, and he will make me to walk upon mine high places.","Habakkuk 3:19"],
+  ["Thou wilt keep him in perfect peace, whose mind is stayed on thee: because he trusteth in thee.","Isaiah 26:3"],
+  ["Know ye not that they which run in a race run all, but one receiveth the prize? So run, that ye may obtain.","1 Corinthians 9:24"],
+  ["I have set the LORD always before me: because he is at my right hand, I shall not be moved.","Psalm 16:8"],
+  ["Commit thy way unto the LORD; trust also in him; and he shall bring it to pass.","Psalm 37:5"],
+  ["Neither be ye sorry; for the joy of the LORD is your strength.","Nehemiah 8:10"]
+];
+const NOTES = ["Showing up counts more than a perfect workout.","You don't have to feel motivated. You just have to start.","Rest days are part of the plan, not a break from it.",
+  "Progress is slow until you look back.","Ten minutes still counts.","Eat the protein first.","Compare this month to last month, not to anyone else.",
+  "Your body is doing the work even when the scale is quiet.","One more rep, or a little more weight, than last time. That's the whole trick.",
+  "Good form today is strength next month.","A walk after dinner helps more than it seems.","Missed yesterday? Today is a fresh start, not a make-up day.",
+  "Sleep is training too.","Keep the promise you made to yourself this morning.","Small habits, repeated, become who you are.",
+  "Be proud of the reps nobody saw.","Drink a glass of water before your coffee.","Strong is built on ordinary weekdays.",
+  "You've done harder things than this workout.","A good day doesn't need to be a perfect day."];
+function encourageCard(){
+  const m = S.settings.encourage; if (!m || m==="none") return "";
+  const i = Math.abs(daysBetween("2026-01-01", today()));
+  if (m==="verse"){ const v = VERSES[i % VERSES.length]; return `<figure class="daily"><blockquote>${esc(v[0])}</blockquote><figcaption>${esc(v[1])} (KJV)</figcaption></figure>`; }
+  return `<figure class="daily"><blockquote>${esc(NOTES[i % NOTES.length])}</blockquote></figure>`;
+}
+const ONB = {i:0, a:{}, redo:false};
+const EQUIP_CH = [["db","Dumbbells"],["bench","A bench"],["rack","Barbell and squat rack"],["bands","Resistance bands"],["rings","Rings or suspension straps"],["pullup","Pull-up bar"],["dip","Dip bars"],["kb","Kettlebell"],["cardio","Bike or treadmill"],["gym","A full gym"],["none","Nothing, just me"]];
+const ONB_STEPS = [
+  {id:"intro", title:a=>"Build your plan", help:a=>"About two minutes. Your answers set your workouts, calorie and protein targets, and dinners. They stay on this phone.",
+    body:a=>ONB.redo || Object.keys(S.workouts).length ? `<p class="small">Your logs, weigh-ins and history stay exactly as they are.</p>` : "", ok:a=>true},
+  {id:"name", title:a=>"What should we call you?", help:a=>"Optional. It's only used for your morning greeting.",
+    body:a=>`<label class="field"><span>First name</span><input data-in="onb" data-k="name" value="${esc(a.name||"")}" autocomplete="given-name" maxlength="40" placeholder="Your name"></label>`, ok:a=>true},
+  {id:"goal", title:a=>"What's your main goal?", help:a=>"Pick the one that matters most right now.",
+    body:a=>chs("goal",[["lose","Lose body fat","Keep your muscle while the scale comes down"],["muscle","Build muscle","Add shape and size, gain slowly"],["strength","Get stronger","Lift more, eat at maintenance"],["health","Feel better and move more","No weight target, just good habits"]],a), ok:a=>!!a.goal},
+  {id:"body", title:a=>"A few numbers for your targets", help:a=>"Used to estimate your calories and protein. They never leave this phone.",
+    body:a=>`${chs("sex",[["f","Female"],["m","Male"]],a,"g2")}
+      <div class="grid2" style="margin-top:6px"><label class="field"><span>Age</span><input data-in="onb" data-k="age" inputmode="numeric" value="${esc(a.age||"")}" placeholder="years"></label>
+      <label class="field"><span>Weight (lb)</span><input data-in="onb" data-k="weightLb" inputmode="decimal" value="${esc(a.weightLb||"")}" placeholder="lb"></label></div>
+      <div class="grid2"><label class="field"><span>Height (ft)</span><input data-in="onb" data-k="ft" inputmode="numeric" value="${esc(a.ft||"")}" placeholder="5"></label>
+      <label class="field"><span>Height (in)</span><input data-in="onb" data-k="inch" inputmode="numeric" value="${esc(a.inch??"")}" placeholder="4"></label></div>`,
+    ok:a=>a.sex && +a.age>=13 && +a.age<=90 && +a.ft>=4 && +a.ft<=7 && +(a.inch||0)>=0 && +(a.inch||0)<12 && +a.weightLb>=80 && +a.weightLb<=500},
+  {id:"goalw", show:a=>a.goal==="lose", title:a=>"What's your goal weight?", help:a=>`Not sure? Leave it blank and the plan aims for about ${Math.round((+a.weightLb||0)*0.9)} lb, roughly 10% down.`,
+    body:a=>`<label class="field"><span>Goal weight (lb)</span><input data-in="onb" data-k="goalLb" inputmode="decimal" value="${esc(a.goalLb||"")}" placeholder="optional"></label>`,
+    ok:a=>!a.goalLb || (+a.goalLb>=80 && +a.goalLb < +a.weightLb)},
+  {id:"special", title:a=>"Does any of this apply right now?", help:a=>"If so, the plan keeps your calories at maintenance instead of cutting.",
+    body:a=>chs("special",[["none","None of these"],["pregnant","Pregnant"],["breastfeeding","Breastfeeding"],["under18","Under 18"]],a), ok:a=>!!a.special},
+  {id:"activity", title:a=>"Outside of workouts, how active is your day?", help:a=>"Think about a normal weekday.",
+    body:a=>chs("activity",[["sit","Mostly sitting","Desk job, driving, couch"],["some","On my feet some of the day","Errands, chores, kids"],["most","On my feet most of the day","Teacher, nurse, retail"],["physical","Physical work","Construction, landscaping, warehouse"]],a), ok:a=>!!a.activity},
+  {id:"days", title:a=>"How many days a week can you work out?", help:a=>"Pick what you can keep up on a busy week, not your best week.",
+    body:a=>chs("days",[[2,"2 days","Full body"],[3,"3 days","Full body"],[4,"4 days","Upper and lower"],[5,"5 days","Upper, lower and full body"]],a,"g2"), ok:a=>!!a.days},
+  {id:"time", title:a=>"How long can each workout be?", help:a=>"Shorter workouts get fewer exercises, not a rushed pace.",
+    body:a=>chs("time",[["short","20–30 minutes"],["mid","30–45 minutes"],["long","45–60 minutes"]],a), ok:a=>!!a.time},
+  {id:"equip", title:a=>"What do you have to work out with?", help:a=>"Pick everything you can use. The plan swaps in exercises that fit.",
+    body:a=>chs("equip",EQUIP_CH,a,"g2",true), ok:a=>(a.equip||[]).length>0},
+  {id:"level", title:a=>"How much lifting have you done?", help:a=>"New lifters start with two sets and lighter weights for two weeks.",
+    body:a=>chs("level",[["new","New to it","Or it's been a long time"],["some","Some experience","I know the basic lifts"],["regular","I lift regularly","Most weeks, for a while"]],a), ok:a=>!!a.level},
+  {id:"food", title:a=>"How do you eat?", help:a=>"Dinners and meal ideas are picked to fit.",
+    body:a=>`${chs("diet",[["all","I eat everything"],["pesc","Pescatarian","Fish, no meat"],["veg","Vegetarian","No meat or fish"]],a)}
+      <div class="onb-sub">Also leave out</div>${chs("avoid",[["dairy","Dairy"],["gluten","Gluten"]],a,"g2",true)}`, ok:a=>!!a.diet},
+  {id:"house", title:a=>"How many people do you cook dinner for?", help:a=>"Sets the grocery amounts. You can change it later.",
+    body:a=>`<div class="row" style="gap:16px">${`<div class="stepper"><button data-act="onb-house" data-d="-1" aria-label="Fewer">−</button><span>${a.household||1}</span><button data-act="onb-house" data-d="1" aria-label="More">+</button></div>`}<span class="muted">${(a.household||1)===1?"Just me":`${a.household} people`}</span></div>`, ok:a=>true},
+  {id:"encourage", title:a=>"A little encouragement each day?", help:a=>"Shows at the top of Today. You can change it in Settings.",
+    body:a=>chs("encourage",[["verse","A Bible verse","King James Version"],["note","A short encouraging note"],["none","No thanks"]],a), ok:a=>!!a.encourage},
+  {id:"remind", title:a=>"When do you usually work out?", help:a=>"At the end you can add your workout days to your phone's calendar, so you get a reminder.",
+    body:a=>chs("remind",[["06:30","Morning","6:30 am"],["12:00","Midday","12:00 pm"],["18:00","Evening","6:00 pm"],["none","It changes","No reminders"]],a), ok:a=>!!a.remind},
+  {id:"summary", title:a=>"Your plan", help:a=>"Estimates to start from. Adjust them once you see how your body responds.", body:a=>onbSummary(a), ok:a=>true},
+];
+function chs(k, opts, a, cls, multi){
+  const cur = a[k];
+  return `<div class="ch${cls?" "+cls:""}">${opts.map(([v,l,sub])=>{ const on = multi ? (cur||[]).includes(v) : cur===v;
+    return `<button class="${on?"on":""}" data-act="${multi?"onb-tog":"onb-pick"}" data-k="${k}" data-v="${v}" aria-pressed="${on}">${esc(l)}${sub?`<small>${esc(sub)}</small>`:""}</button>`; }).join("")}</div>`;
+}
+function onbProfile(a){
+  return {name:(a.name||"").trim(), goal:a.goal, sex:a.sex, age:+a.age, heightIn:(+a.ft)*12+(+a.inch||0), weightLb:+a.weightLb, goalLb:+a.goalLb||0,
+    special:a.special||"none", activity:a.activity, days:+a.days, time:a.time, equip:a.equip||["none"], level:a.level, diet:a.diet||"all", avoid:a.avoid||[],
+    household:a.household||1, encourage:a.encourage||"none", remind:a.remind||"none"};
+}
+function onbSummary(a){
+  const p = onbProfile(a), c = PGEN.generate(p, DINNERS), t = c.targets;
+  const order = [1,2,3,4,5,6,0], dn = {1:"Mon",2:"Tue",3:"Wed",4:"Thu",5:"Fri",6:"Sat",0:"Sun"};
+  const first = c.sessions[c.lift[0]];
+  return `<div class="onb-sum"><div class="big"><div><b>${comma(t.kcal)}</b><span>calories a day</span></div><div><b>${t.protein} g</b><span>protein a day</span></div></div>
+    <p class="small muted" style="margin:6px 0 0">${t.pace==="Hold steady"?"Aim to hold your weight steady":`Expected pace: ${t.pace}`}${c.goalMin && p.goal==="lose" && p.special==="none" ? `, toward ${c.goalMin}–${c.goalMax} lb` : ""}.</p>
+    ${t.note||c.goalNote?`<div class="card warn small">${esc([t.note,c.goalNote].filter(Boolean).join(" "))}</div>`:""}
+    <div class="onb-sub">Your week</div><div class="sched">${order.map(k=>{ const s = c.sessions[c.schedule[k]]; return `<b>${dn[k]}</b><span>${esc(s.type==="lift"?s.title:s.type==="move"?s.focus:"Rest")}</span>`; }).join("")}</div>
+    <div class="onb-sub">${esc(first.title)} looks like</div><ul class="clean small">${first.ex.map(e=>`<li>${esc((EX[e.id]||{}).name||e.id)}</li>`).join("")}</ul>
+    <div class="onb-sub">Weeknight dinners</div><ul class="clean small">${[...new Set(Object.values(c.dinners))].map(id=>`<li>${esc(DINNERS[id].name)}</li>`).join("")}</ul>
+    <p class="muted tiny" style="margin-top:14px">These are estimates, not medical advice. Check with your doctor before starting if you have a health condition.</p></div>`;
+}
+function onbVisible(){ return ONB_STEPS.filter(st=>!st.show || st.show(ONB.a)); }
+function onbRender(){
+  const steps = onbVisible(), st = steps[Math.min(ONB.i, steps.length-1)], a = ONB.a, last = st.id==="summary";
+  $("#onb").innerHTML = `<div class="onb-top">${ONB.i>0?`<button class="mini" data-act="onb-back" aria-label="Back">${ICON.left}</button>`:`<span style="width:38px"></span>`}
+      <div class="onb-prog" aria-hidden="true"><i style="width:${Math.round((ONB.i)/(steps.length-1)*100)}%"></i></div>
+      <button class="mini" data-act="onb-close" aria-label="Close">${ICON.x}</button></div>
+    <div class="onb-body"><h2>${esc(st.title(a))}</h2><p class="help">${esc(st.help(a))}</p>${st.body(a)}</div>
+    <div class="onb-foot">${last
+      ? `<button class="btn primary block" data-act="onb-start">${ONB.redo?"Use this plan":"Start my plan"}</button>${a.remind && a.remind!=="none"?`<button class="btn block" data-act="onb-ics">Add workout reminders to my calendar</button>`:""}`
+      : `<button class="btn primary block" data-act="onb-next" id="onbNext" ${st.ok(a)?"":"disabled"}>${st.id==="intro"?"Start":"Next"}</button>${st.id==="intro" && !ONB.redo?`<button class="btn ghost block" data-act="onb-close">${Object.keys(S.workouts).length?"Not now":"Use the starter plan"}</button>`:""}`}</div>`;
+  $("#onb").querySelector(".onb-body").scrollTop = 0;
+}
+function openOnb(){
+  const p = S.profile;
+  ONB.redo = !!p; ONB.i = 0;
+  ONB.a = p ? {...p, ft:Math.floor(p.heightIn/12), inch:p.heightIn%12, goalLb:p.goalLb||""} : {household:S.grocery.household||1, name:S.settings.name||""};
+  $("#onb").classList.add("on"); document.body.style.overflow = "hidden"; onbRender();
+}
+function closeOnb(){ $("#onb").classList.remove("on"); document.body.style.overflow = ""; S.settings.onbSeen = true; save(); }
+function onbOk(){ const st = onbVisible()[ONB.i], b = $("#onbNext"); if (b && st) b.disabled = !st.ok(ONB.a); }
+function startPlan(){
+  const p = onbProfile(ONB.a), fresh = !Object.keys(S.workouts).length && !Object.keys(S.meals).length && !S.weighins.length;
+  S.profile = p; S.custom = PGEN.generate(p, DINNERS);
+  if (p.name) S.settings.name = p.name;
+  if (fresh) S.settings.startDate = defaultStart();
+  S.settings.encourage = p.encourage; S.settings.remindTime = p.remind==="none" ? (S.settings.remindTime||"06:30") : p.remind;
+  S.grocery.household = p.household; S.swaps = {};
+  applyPlan(); closeOnb(); UI.page = null; UI.tab = "today"; render(); toast(ONB.redo ? "Your plan is updated" : "Your plan is ready");
+}
+/* workout reminders: a calendar file with each workout day repeating weekly, with an alert */
+function icsText(time){
+  const [hh,mm] = String(time||"06:30").split(":").map(Number), mins = ({short:30,mid:45,long:60})[(S.profile||{}).time] || 45;
+  const start = S.settings.startDate > today() ? S.settings.startDate : today();
+  const stamp = new Date().toISOString().replace(/[-:]/g,"").slice(0,15)+"Z", e = t => String(t).replace(/([,;\\])/g,"\\$1");
+  const ev = [];
+  DOW_ORDER.forEach(([k])=>{ const sid = SCHEDULE[k]; if (!LIFT_SESSIONS.includes(sid)) return;
+    let d = start; while (dow(d)!==k) d = addDays(d,1);
+    ev.push(["BEGIN:VEVENT",`UID:yourplan-${sid}-${d}-${pad(hh)}${pad(mm)}`,`DTSTAMP:${stamp}`,`DTSTART:${d.replace(/-/g,"")}T${pad(hh)}${pad(mm)}00`,`DURATION:PT${mins}M`,
+      "RRULE:FREQ=WEEKLY;COUNT=12",`SUMMARY:${e(SESSIONS[sid].title)}`,`DESCRIPTION:${e(SESSIONS[sid].focus)}. Open Your Plan to log it.`,
+      "BEGIN:VALARM","ACTION:DISPLAY","TRIGGER:PT0M",`DESCRIPTION:${e("Time for "+SESSIONS[sid].title)}`,"END:VALARM","END:VEVENT"].join("\r\n")); });
+  return ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Your Plan//EN","CALSCALE:GREGORIAN","METHOD:PUBLISH",...ev,"END:VCALENDAR"].join("\r\n");
+}
+function addReminders(time){
+  const t = icsText(time);
+  if (!window.claude && /iPhone|iPad|iPod/.test(navigator.userAgent)){ location.href = "data:text/calendar;charset=utf-8," + encodeURIComponent(t); return; }
+  saveFile("your-plan-workouts.ics", t, "text/calendar").then(ok=>{ if (ok) toast("Open the file to add your workouts to your calendar"); });
+}
 
 /* ===================== EXPORT / IMPORT ===================== */
 async function saveFile(filename, text, type){
@@ -2200,6 +2689,7 @@ window.addEventListener("beforeprint", ()=>{ $("#print").innerHTML = buildPrint(
   if (q.get("page")==="plan"||q.get("page")==="settings") UI.page = q.get("page");
   $("#print").innerHTML = buildPrint();
   render();
+  if (!window.claude && !S.profile && !S.settings.onbSeen && !Object.keys(S.workouts).length && !Object.keys(S.meals).length && !S.weighins.length) openOnb();
   if (!window.claude && !document.querySelector('link[rel="manifest"]')) setupPWA(); // home-screen install only applies when the file is hosted on its own site; the hosted build ships real icon files instead
   initSync();
 })();
